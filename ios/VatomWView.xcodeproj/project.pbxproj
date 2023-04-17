@@ -1,0 +1,645 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BDE2D98E297F46300072D18F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D98D297F46300072D18F /* AppDelegate.swift */; };
+		BDE2D990297F46300072D18F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D98F297F46300072D18F /* SceneDelegate.swift */; };
+		BDE2D992297F46300072D18F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D991297F46300072D18F /* ViewController.swift */; };
+		BDE2D995297F46300072D18F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE2D993297F46300072D18F /* Main.storyboard */; };
+		BDE2D997297F46320072D18F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDE2D996297F46320072D18F /* Assets.xcassets */; };
+		BDE2D99A297F46320072D18F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE2D998297F46320072D18F /* LaunchScreen.storyboard */; };
+		BDE2D9A5297F46320072D18F /* VatomWViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D9A4297F46320072D18F /* VatomWViewTests.swift */; };
+		BDE2D9AF297F46320072D18F /* VatomWViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D9AE297F46320072D18F /* VatomWViewUITests.swift */; };
+		BDE2D9B1297F46320072D18F /* VatomWViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D9B0297F46320072D18F /* VatomWViewUITestsLaunchTests.swift */; };
+		BDF4553B29887B3F00EE29D2 /* VatomWallet in Frameworks */ = {isa = PBXBuildFile; productRef = BDF4553A29887B3F00EE29D2 /* VatomWallet */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BDE2D9A1297F46320072D18F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDE2D982297F46300072D18F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDE2D989297F46300072D18F;
+			remoteInfo = VatomWView;
+		};
+		BDE2D9AB297F46320072D18F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDE2D982297F46300072D18F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDE2D989297F46300072D18F;
+			remoteInfo = VatomWView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BDE2D98A297F46300072D18F /* VatomWView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VatomWView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDE2D98D297F46300072D18F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BDE2D98F297F46300072D18F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BDE2D991297F46300072D18F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BDE2D994297F46300072D18F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BDE2D996297F46320072D18F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BDE2D999297F46320072D18F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BDE2D99B297F46320072D18F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDE2D9A0297F46320072D18F /* VatomWViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VatomWViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDE2D9A4297F46320072D18F /* VatomWViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VatomWViewTests.swift; sourceTree = "<group>"; };
+		BDE2D9AA297F46320072D18F /* VatomWViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VatomWViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDE2D9AE297F46320072D18F /* VatomWViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VatomWViewUITests.swift; sourceTree = "<group>"; };
+		BDE2D9B0297F46320072D18F /* VatomWViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VatomWViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BDF4553929887B3400EE29D2 /* VatomWallet */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = VatomWallet; path = "../../Documents/vatominc-wallet-native/apps/ios-embed-sdk/VatomWallet"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BDE2D987297F46300072D18F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDF4553B29887B3F00EE29D2 /* VatomWallet in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE2D99D297F46320072D18F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE2D9A7297F46320072D18F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BD3591A629806B8B00EB39D8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BDF4553929887B3400EE29D2 /* VatomWallet */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		BDE2D981297F46300072D18F = {
+			isa = PBXGroup;
+			children = (
+				BD3591A629806B8B00EB39D8 /* Packages */,
+				BDE2D98C297F46300072D18F /* VatomWView */,
+				BDE2D9A3297F46320072D18F /* VatomWViewTests */,
+				BDE2D9AD297F46320072D18F /* VatomWViewUITests */,
+				BDE2D98B297F46300072D18F /* Products */,
+				BDE2D9BF297F480E0072D18F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BDE2D98B297F46300072D18F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BDE2D98A297F46300072D18F /* VatomWView.app */,
+				BDE2D9A0297F46320072D18F /* VatomWViewTests.xctest */,
+				BDE2D9AA297F46320072D18F /* VatomWViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BDE2D98C297F46300072D18F /* VatomWView */ = {
+			isa = PBXGroup;
+			children = (
+				BDE2D98D297F46300072D18F /* AppDelegate.swift */,
+				BDE2D98F297F46300072D18F /* SceneDelegate.swift */,
+				BDE2D991297F46300072D18F /* ViewController.swift */,
+				BDE2D993297F46300072D18F /* Main.storyboard */,
+				BDE2D996297F46320072D18F /* Assets.xcassets */,
+				BDE2D998297F46320072D18F /* LaunchScreen.storyboard */,
+				BDE2D99B297F46320072D18F /* Info.plist */,
+			);
+			path = VatomWView;
+			sourceTree = "<group>";
+		};
+		BDE2D9A3297F46320072D18F /* VatomWViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				BDE2D9A4297F46320072D18F /* VatomWViewTests.swift */,
+			);
+			path = VatomWViewTests;
+			sourceTree = "<group>";
+		};
+		BDE2D9AD297F46320072D18F /* VatomWViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BDE2D9AE297F46320072D18F /* VatomWViewUITests.swift */,
+				BDE2D9B0297F46320072D18F /* VatomWViewUITestsLaunchTests.swift */,
+			);
+			path = VatomWViewUITests;
+			sourceTree = "<group>";
+		};
+		BDE2D9BF297F480E0072D18F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BDE2D989297F46300072D18F /* VatomWView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDE2D9B4297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWView" */;
+			buildPhases = (
+				BDE2D986297F46300072D18F /* Sources */,
+				BDE2D987297F46300072D18F /* Frameworks */,
+				BDE2D988297F46300072D18F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VatomWView;
+			packageProductDependencies = (
+				BDF4553A29887B3F00EE29D2 /* VatomWallet */,
+			);
+			productName = VatomWView;
+			productReference = BDE2D98A297F46300072D18F /* VatomWView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BDE2D99F297F46320072D18F /* VatomWViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDE2D9B7297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWViewTests" */;
+			buildPhases = (
+				BDE2D99C297F46320072D18F /* Sources */,
+				BDE2D99D297F46320072D18F /* Frameworks */,
+				BDE2D99E297F46320072D18F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDE2D9A2297F46320072D18F /* PBXTargetDependency */,
+			);
+			name = VatomWViewTests;
+			productName = VatomWViewTests;
+			productReference = BDE2D9A0297F46320072D18F /* VatomWViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BDE2D9A9297F46320072D18F /* VatomWViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDE2D9BA297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWViewUITests" */;
+			buildPhases = (
+				BDE2D9A6297F46320072D18F /* Sources */,
+				BDE2D9A7297F46320072D18F /* Frameworks */,
+				BDE2D9A8297F46320072D18F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDE2D9AC297F46320072D18F /* PBXTargetDependency */,
+			);
+			name = VatomWViewUITests;
+			productName = VatomWViewUITests;
+			productReference = BDE2D9AA297F46320072D18F /* VatomWViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BDE2D982297F46300072D18F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					BDE2D989297F46300072D18F = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					BDE2D99F297F46320072D18F = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = BDE2D989297F46300072D18F;
+					};
+					BDE2D9A9297F46320072D18F = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = BDE2D989297F46300072D18F;
+					};
+				};
+			};
+			buildConfigurationList = BDE2D985297F46300072D18F /* Build configuration list for PBXProject "VatomWView" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BDE2D981297F46300072D18F;
+			productRefGroup = BDE2D98B297F46300072D18F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BDE2D989297F46300072D18F /* VatomWView */,
+				BDE2D99F297F46320072D18F /* VatomWViewTests */,
+				BDE2D9A9297F46320072D18F /* VatomWViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BDE2D988297F46300072D18F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDE2D99A297F46320072D18F /* LaunchScreen.storyboard in Resources */,
+				BDE2D997297F46320072D18F /* Assets.xcassets in Resources */,
+				BDE2D995297F46300072D18F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE2D99E297F46320072D18F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE2D9A8297F46320072D18F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BDE2D986297F46300072D18F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDE2D992297F46300072D18F /* ViewController.swift in Sources */,
+				BDE2D98E297F46300072D18F /* AppDelegate.swift in Sources */,
+				BDE2D990297F46300072D18F /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE2D99C297F46320072D18F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDE2D9A5297F46320072D18F /* VatomWViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BDE2D9A6297F46320072D18F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDE2D9AF297F46320072D18F /* VatomWViewUITests.swift in Sources */,
+				BDE2D9B1297F46320072D18F /* VatomWViewUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BDE2D9A2297F46320072D18F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDE2D989297F46300072D18F /* VatomWView */;
+			targetProxy = BDE2D9A1297F46320072D18F /* PBXContainerItemProxy */;
+		};
+		BDE2D9AC297F46320072D18F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDE2D989297F46300072D18F /* VatomWView */;
+			targetProxy = BDE2D9AB297F46320072D18F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BDE2D993297F46300072D18F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BDE2D994297F46300072D18F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BDE2D998297F46320072D18F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BDE2D999297F46320072D18F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BDE2D9B2297F46320072D18F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BDE2D9B3297F46320072D18F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BDE2D9B5297F46320072D18F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BRXNW56RT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VatomWView/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = NSCameraUsageDescription;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Give me location";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vatom.VatomWView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BDE2D9B6297F46320072D18F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BRXNW56RT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VatomWView/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = NSCameraUsageDescription;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Give me location";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vatom.VatomWView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BDE2D9B8297F46320072D18F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BRXNW56RT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vatom.VatomWViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VatomWView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VatomWView";
+			};
+			name = Debug;
+		};
+		BDE2D9B9297F46320072D18F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BRXNW56RT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vatom.VatomWViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VatomWView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VatomWView";
+			};
+			name = Release;
+		};
+		BDE2D9BB297F46320072D18F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BRXNW56RT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vatom.VatomWViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VatomWView;
+			};
+			name = Debug;
+		};
+		BDE2D9BC297F46320072D18F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BRXNW56RT8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vatom.VatomWViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = VatomWView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BDE2D985297F46300072D18F /* Build configuration list for PBXProject "VatomWView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDE2D9B2297F46320072D18F /* Debug */,
+				BDE2D9B3297F46320072D18F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDE2D9B4297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDE2D9B5297F46320072D18F /* Debug */,
+				BDE2D9B6297F46320072D18F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDE2D9B7297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDE2D9B8297F46320072D18F /* Debug */,
+				BDE2D9B9297F46320072D18F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDE2D9BA297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDE2D9BB297F46320072D18F /* Debug */,
+				BDE2D9BC297F46320072D18F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BDF4553A29887B3F00EE29D2 /* VatomWallet */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VatomWallet;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = BDE2D982297F46300072D18F /* Project object */;
+}
