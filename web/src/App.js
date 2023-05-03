@@ -13,14 +13,7 @@ function App() {
   useEffect(() => {
     if (divRef.current && shouldRender) {
       new VatomWallet(divRef.current, accessToken, businessId, {
-        // baseUrl: "https://wow.vatominc.cc",
-        baseUrl: "https://wallet.localhost:3000",
-        features: {
-          // scanner: {
-          //   enabled: true,
-          // },
-        },
-        // visibleTabs: ["people", "inventory", "profile"],
+        baseUrl: "https://wow.vatom.com",
       });
     }
   }, [shouldRender, accessToken, businessId]);
