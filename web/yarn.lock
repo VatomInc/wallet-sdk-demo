@@ -2221,10 +2221,17 @@
     "@typescript-eslint/types" "5.54.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vatom/wallet-sdk@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@vatom/wallet-sdk/-/wallet-sdk-0.0.6.tgz#afc07f90ee76bbefca0beba1b8d4badc131e8a31"
-  integrity sha512-L+Ib3L6G1UXB/GB+NPjB6Ld43+O+WWs5Z+c7G8mbjlAoF7z8AsNJt/QDy1RwKmFJ9/xTZDdJc85w57rvNMBLjg==
+"@vatom/identity-sdk@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@vatom/identity-sdk/-/identity-sdk-0.0.9.tgz#473ebce921ec048db1a06dec2783c6caf994287c"
+  integrity sha512-9HR1aoAM527vznjq5/ycXPGZ2v3KiVFZhbhHHeJDS0isS505Olh/fpEjQiOEDt6DLjzM1t43Df+n6YGrMBu+yw==
+  dependencies:
+    jwt-decode "3.1.2"
+
+"@vatom/wallet-sdk@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@vatom/wallet-sdk/-/wallet-sdk-0.0.9.tgz#7708df9f94371d97baa6a0109d36ff139d6eea0a"
+  integrity sha512-hsBDHbx8lns5YagRcuhSnH6y5WJ3RmMe4CRVb66o54M5ALocFXL4lh1qlb5Q7dUvHPZskDMCT80bE+BWAVDA6g==
   dependencies:
     jwt-decode "3.1.2"
 
