@@ -2221,10 +2221,10 @@
     "@typescript-eslint/types" "5.54.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vatom/wallet-sdk@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@vatom/wallet-sdk/-/wallet-sdk-0.0.6.tgz#afc07f90ee76bbefca0beba1b8d4badc131e8a31"
-  integrity sha512-L+Ib3L6G1UXB/GB+NPjB6Ld43+O+WWs5Z+c7G8mbjlAoF7z8AsNJt/QDy1RwKmFJ9/xTZDdJc85w57rvNMBLjg==
+"@vatom/wallet-sdk@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@vatom/wallet-sdk/-/wallet-sdk-0.0.7.tgz#ea55063b047420a9f1acab9c1a48f3e1e3050227"
+  integrity sha512-vqxp3XvCQmYJc/IMAcj3anzKRckDojeouz2vWF5j2unaOpudC4xbW2j5CsW674wLpax4fx2Sm2TeyEcM6cm3lw==
   dependencies:
     jwt-decode "3.1.2"
 
