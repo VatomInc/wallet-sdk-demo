@@ -513,10 +513,10 @@ packages:
     dependency: "direct main"
     description:
       name: vatom_wallet_sdk
-      sha256: "9008a6926b3a662c542b49fa92ddce0507d8d042275320a81cf3705625a6b4c0"
+      sha256: "553e4f1843c62e732eeea13fcc7815824bfb444b641b3741e54831341d994546"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1"
+    version: "0.0.3"
   vector_math:
     dependency: transitive
     description:
