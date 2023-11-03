@@ -23,7 +23,32 @@ function App() {
 
   useEffect(() => {
     if (divRef.current && accessToken) {
-      new VatomWallet(divRef.current, accessToken.access_token, '', { baseUrl: 'https://wallet.vatom.com', features: { business: { hideHeader: true }, inventory: { hideHeader: true } } })
+      new VatomWallet(divRef.current, accessToken.access_token, '', 
+      {
+        baseUrl: 'https://wallet.vatominc.com/',
+
+        hideTokenActions: true,
+        scanner: {
+          enabled: false
+        }
+        // pageConfig: {
+        //   theme: {
+        //     iconTitle: {
+        //       textAlign: 'left',
+        //       color: '#F8F9FA'
+        //     },
+        //     icon: {
+        //       backgroundColor: '#111111',
+        //       border: '1px solid #3F4A55',
+        //       color: '#F8F9FA'
+        //     },
+        //     main: {},
+        //     emptyState: {},
+        //     mode: 'dark',
+        //     pageTheme: 'dark'
+        //   }
+        // }
+      })
     }
   }, [divRef, accessToken])
 
