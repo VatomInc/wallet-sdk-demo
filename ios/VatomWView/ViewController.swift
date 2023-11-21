@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import VatomWallet
+import vatom_wallet_sdk
 
 class ViewController: UIViewController, UIScrollViewDelegate {
     var vatom: VatomWallet?
