@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		423EB7ED77AA616980CA092B /* libPods-VatomWView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D3F50FDE700A37578AA00E9 /* libPods-VatomWView.a */; };
 		BDE2D98E297F46300072D18F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D98D297F46300072D18F /* AppDelegate.swift */; };
 		BDE2D990297F46300072D18F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D98F297F46300072D18F /* SceneDelegate.swift */; };
 		BDE2D992297F46300072D18F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D991297F46300072D18F /* ViewController.swift */; };
@@ -16,7 +17,6 @@
 		BDE2D9A5297F46320072D18F /* VatomWViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D9A4297F46320072D18F /* VatomWViewTests.swift */; };
 		BDE2D9AF297F46320072D18F /* VatomWViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D9AE297F46320072D18F /* VatomWViewUITests.swift */; };
 		BDE2D9B1297F46320072D18F /* VatomWViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D9B0297F46320072D18F /* VatomWViewUITestsLaunchTests.swift */; };
-		BDF4553B29887B3F00EE29D2 /* VatomWallet in Frameworks */ = {isa = PBXBuildFile; productRef = BDF4553A29887B3F00EE29D2 /* VatomWallet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		81D4C7485E2E6AF4C8759D0B /* Pods-VatomWView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VatomWView.release.xcconfig"; path = "Target Support Files/Pods-VatomWView/Pods-VatomWView.release.xcconfig"; sourceTree = "<group>"; };
+		9D3F50FDE700A37578AA00E9 /* libPods-VatomWView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VatomWView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFA1D92F1F2A25DEE16AB104 /* Pods-VatomWView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VatomWView.debug.xcconfig"; path = "Target Support Files/Pods-VatomWView/Pods-VatomWView.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE2D98A297F46300072D18F /* VatomWView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VatomWView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE2D98D297F46300072D18F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDE2D98F297F46300072D18F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +53,6 @@
 		BDE2D9AA297F46320072D18F /* VatomWViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VatomWViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE2D9AE297F46320072D18F /* VatomWViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VatomWViewUITests.swift; sourceTree = "<group>"; };
 		BDE2D9B0297F46320072D18F /* VatomWViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VatomWViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BDF4553929887B3400EE29D2 /* VatomWallet */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = VatomWallet; path = "../../Documents/vatominc-wallet-native/apps/ios-embed-sdk/VatomWallet"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDF4553B29887B3F00EE29D2 /* VatomWallet in Frameworks */,
+				423EB7ED77AA616980CA092B /* libPods-VatomWView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,23 +81,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BD3591A629806B8B00EB39D8 /* Packages */ = {
+		0D02D5E36F830FDBD5492888 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BDF4553929887B3400EE29D2 /* VatomWallet */,
+				AFA1D92F1F2A25DEE16AB104 /* Pods-VatomWView.debug.xcconfig */,
+				81D4C7485E2E6AF4C8759D0B /* Pods-VatomWView.release.xcconfig */,
 			);
-			name = Packages;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		BDE2D981297F46300072D18F = {
 			isa = PBXGroup;
 			children = (
-				BD3591A629806B8B00EB39D8 /* Packages */,
 				BDE2D98C297F46300072D18F /* VatomWView */,
 				BDE2D9A3297F46320072D18F /* VatomWViewTests */,
 				BDE2D9AD297F46320072D18F /* VatomWViewUITests */,
 				BDE2D98B297F46300072D18F /* Products */,
 				BDE2D9BF297F480E0072D18F /* Frameworks */,
+				0D02D5E36F830FDBD5492888 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +146,7 @@
 		BDE2D9BF297F480E0072D18F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D3F50FDE700A37578AA00E9 /* libPods-VatomWView.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,6 +158,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDE2D9B4297F46320072D18F /* Build configuration list for PBXNativeTarget "VatomWView" */;
 			buildPhases = (
+				7312C8EB9BA8136110D7B68C /* [CP] Check Pods Manifest.lock */,
 				BDE2D986297F46300072D18F /* Sources */,
 				BDE2D987297F46300072D18F /* Frameworks */,
 				BDE2D988297F46300072D18F /* Resources */,
@@ -164,7 +169,6 @@
 			);
 			name = VatomWView;
 			packageProductDependencies = (
-				BDF4553A29887B3F00EE29D2 /* VatomWallet */,
 			);
 			productName = VatomWView;
 			productReference = BDE2D98A297F46300072D18F /* VatomWView.app */;
@@ -275,6 +279,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7312C8EB9BA8136110D7B68C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VatomWView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BDE2D986297F46300072D18F /* Sources */ = {
@@ -455,6 +484,7 @@
 		};
 		BDE2D9B5297F46320072D18F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFA1D92F1F2A25DEE16AB104 /* Pods-VatomWView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -487,6 +517,7 @@
 		};
 		BDE2D9B6297F46320072D18F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81D4C7485E2E6AF4C8759D0B /* Pods-VatomWView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -633,13 +664,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		BDF4553A29887B3F00EE29D2 /* VatomWallet */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = VatomWallet;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BDE2D982297F46300072D18F /* Project object */;
 }
