@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		423EB7ED77AA616980CA092B /* libPods-VatomWView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D3F50FDE700A37578AA00E9 /* libPods-VatomWView.a */; };
+		A0A933D12B1792FC00F29607 /* mapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = A0A933D02B1792FC00F29607 /* mapStyle.json */; };
 		BDE2D98E297F46300072D18F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D98D297F46300072D18F /* AppDelegate.swift */; };
 		BDE2D990297F46300072D18F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D98F297F46300072D18F /* SceneDelegate.swift */; };
 		BDE2D992297F46300072D18F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2D991297F46300072D18F /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		81D4C7485E2E6AF4C8759D0B /* Pods-VatomWView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VatomWView.release.xcconfig"; path = "Target Support Files/Pods-VatomWView/Pods-VatomWView.release.xcconfig"; sourceTree = "<group>"; };
 		9D3F50FDE700A37578AA00E9 /* libPods-VatomWView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VatomWView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A933D02B1792FC00F29607 /* mapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mapStyle.json; sourceTree = "<group>"; };
 		AFA1D92F1F2A25DEE16AB104 /* Pods-VatomWView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VatomWView.debug.xcconfig"; path = "Target Support Files/Pods-VatomWView/Pods-VatomWView.debug.xcconfig"; sourceTree = "<group>"; };
 		BDE2D98A297F46300072D18F /* VatomWView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VatomWView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE2D98D297F46300072D18F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				BDE2D996297F46320072D18F /* Assets.xcassets */,
 				BDE2D998297F46320072D18F /* LaunchScreen.storyboard */,
 				BDE2D99B297F46320072D18F /* Info.plist */,
+				A0A933D02B1792FC00F29607 /* mapStyle.json */,
 			);
 			path = VatomWView;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A933D12B1792FC00F29607 /* mapStyle.json in Resources */,
 				BDE2D99A297F46320072D18F /* LaunchScreen.storyboard in Resources */,
 				BDE2D997297F46320072D18F /* Assets.xcassets in Resources */,
 				BDE2D995297F46300072D18F /* Main.storyboard in Resources */,

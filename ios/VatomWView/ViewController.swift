@@ -8,62 +8,86 @@
 import UIKit
 import vatom_wallet_sdk
 
+
+
+
 class ViewController: UIViewController, UIScrollViewDelegate {
-    var vatom: VatomWallet?
+    var wallet: VatomWallet?
     let floatingButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        Get the access token & refresh token after the token-exchange and pass it to the VatomWallet
-        let vatomAccessToken = "YOUR_ACCESS_TOKEN"
+        let vatomAccessToken = ""
+        let refreshToken = ""
+        let businessId = "nQwtevgfOa"
+        let experienceUrl = "https://vatom.com"
+        let mapStyles = self.loadMapStyles()
+
         
-        let vatomConfigFeatures: [String: Any] = [
-            "hideNavigation": false,
-            "hideTokenActions": true,
-            "disableNewTokenToast": true,
-            "scanner": ["enabled": false],
-            "pageConfig": [
-                "theme": [
-                    "header": ["logo": "https://resources.vatom.com/a8BxS4bNj9/UR_Logo.png"],
-                    "iconTitle": [:],
-                    "icon": [:],
-                    "main": [:],
-                    "emptyState": [:],
-                    "mode": "dark",
-                    "pageTheme": "dark",
-                ],
-                "text": ["emptyState": ""],
-                "features": [
-                    "notifications": [:],
-                    "card": [:],
-                    "footer": [
-                        "enabled": true,
-                        "icons": [
-                            [
-                                "src": "https:sites.vatom.com/a8BxS4bNj9",
-                                "title": "Home",
-                                "id": "home",
-                            ],
-                        ],
-                    ],
-                    "vatom": [:],
-                ],
-            ],
-        ]
+        let config = VatomConfig(
+            baseUrl: "https://wallet.vatominc.com",
+            hideNavigation: false,
+            hideDrawer: false,
+            hideTokenActions: true,
+            language: "en",
+            disableNewTokenToast: true,
+            scanner: .init(enabled: false),
+            pageConfig: .init(
+                theme: .init(
+                    header: ["logo": "https://resources.vatom.com/a8BxS4bNj9/UR_Logo.png"],
+                    iconTitle: [:],
+                    icon: [:],
+                    main: [:],
+                    emptyState: [:],
+                    mode: "dark",
+                    pageTheme: "dark"
+                ),
+                text: ["emptyState": ""],
+                features: .init(
+                    notifications: [:],
+                    card: [:],
+                    footer: .init(
+                        enabled: true,
+                        icons: [
+                            .init(link: experienceUrl, title: "Home", id: "home"),
+                            .init(title: "Connect", id: "connect"),
+                            .init(title: "Map", id: "map")
+                        ]
+                    )
+                )
+            ),
+            mapStyle: mapStyles
+        )
         
         
-        self.vatom = VatomWallet(businessId: "e2fVTm8Kuy", accessToken:vatomAccessToken,view: self.view, config: vatomConfigFeatures)
-        view.addSubview(vatom!)
         
-        vatom?.scrollView.delegate = self
-        vatom?.scrollView.bounces = false
-        vatom?.scrollView.bouncesZoom = false
+        self.wallet = VatomWallet(businessId: businessId, accessToken:vatomAccessToken,view: self.view, config: config, refreshToken: refreshToken)
+        view.addSubview(wallet!)
         
-        vatom?.load()
+        wallet?.scrollView.delegate = self
+        wallet?.scrollView.bounces = false
+        wallet?.scrollView.bouncesZoom = false
+        
+        wallet?.load()
         
         // Setup the floating button
         setupFloatingButton()
+    }
+    
+    private func loadMapStyles () ->  [VatomConfig.MapStyleElement]? {
+        var mapStyles: [VatomConfig.MapStyleElement]?
+
+         if let mapStylesUrl = Bundle.main.url(forResource: "mapStyle", withExtension: "json") {
+            do {
+                mapStyles = try VatomConfig.loadMapStyles(from: mapStylesUrl)
+            } catch {
+                print("Error loading map styles: \(error)")
+            }
+            
+        }
+        
+        return mapStyles
     }
     
     private func setupFloatingButton() {
@@ -99,13 +123,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         
         Task {
-            try await vatom?.navigateToTab("Connect")
+            try await wallet?.navigateToTab("Connect")
         }
     }
     
     private func getUser (){
         Task {
-            if let userData = await vatom?.getUser()  {
+            if let userData = await wallet?.getUser()  {
                 // Now that we have casted userData to a dictionary, we can access its "name" key
                 
                 // Show an alert with the user's name
@@ -127,7 +151,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     private func isLoggedIn (){
         Task {
-            if let isLoggedIn = await vatom?.isLoggedIn()  {
+            if let isLoggedIn = await wallet?.isLoggedIn()  {
                 print("isLoggedIn",isLoggedIn)
                 // Now that we have casted userData to a dictionary, we can access its "name" key
                 // Show an alert with the user's name
@@ -151,13 +175,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     private func navigate(_ to: String) {
         Task {
-            try await vatom?.navigateToTab(to)
+            try await wallet?.navigateToTab(to)
         }
     }
     
     private func listTokens() {
         Task {
-            let tokens =  try await self.vatom?.listTokens()
+            let tokens =  try await self.wallet?.listTokens()
             let alertController = UIAlertController(
                 title: "Tokens",
                 message: "You got, \(tokens?.count) tokens!",
@@ -172,10 +196,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     func trashFirstToken  (){
         Task {
-            let tokens =  try await self.vatom?.listTokens()
+            let tokens =  try await self.wallet?.listTokens()
             if let firstToken = tokens?.first as? [String : Any?] {
                 if let id = firstToken["id"] as? String {
-                    await self.vatom?.trashToken(tokenId: id)
+                    await self.wallet?.trashToken(tokenId: id)
                 }
                 
             }
@@ -183,7 +207,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    
+    func logOut (){
+        Task {
+          try await self.wallet?.logOut()
+        }
+        
+    }
     
     
     
@@ -196,6 +225,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             self.navigate("Connect")
         }))
         
+        actionSheet.addAction(UIAlertAction(title: "Log out", style: .default, handler: { _ in
+            self.logOut()
+        }))
         
         actionSheet.addAction(UIAlertAction(title: "Navigate to Wallet", style: .default, handler: { _ in
             self.navigate("Wallet")
