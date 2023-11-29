@@ -1,16 +1,16 @@
 PODS:
-  - vatom-wallet-sdk (0.0.2)
+  - vatom-wallet-sdk (0.0.7)
 
 DEPENDENCIES:
-  - vatom-wallet-sdk (~> 0.0.2)
+  - vatom-wallet-sdk
 
 SPEC REPOS:
   trunk:
     - vatom-wallet-sdk
 
 SPEC CHECKSUMS:
-  vatom-wallet-sdk: 05992a56a58d07f7bd77b0b204ff545371219154
+  vatom-wallet-sdk: 119f43e03d5b444dfe7d91ed683b3b35b17ccaed
 
-PODFILE CHECKSUM: 5e09bdc8596d1c81a54300196072508c08c57ce8
+PODFILE CHECKSUM: ab9cc03787bf29fb09cc364bc68d860ae82c9178
 
 COCOAPODS: 1.14.2
