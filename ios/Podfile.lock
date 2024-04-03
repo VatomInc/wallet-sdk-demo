@@ -1,16 +1,20 @@
 PODS:
+  - MnemonicSwift (2.2.4)
   - vatom-wallet-sdk (0.0.7)
 
 DEPENDENCIES:
+  - MnemonicSwift
   - vatom-wallet-sdk
 
 SPEC REPOS:
   trunk:
+    - MnemonicSwift
     - vatom-wallet-sdk
 
 SPEC CHECKSUMS:
+  MnemonicSwift: 40ba76b951b75b32e2719df989b4d6da5798fe26
   vatom-wallet-sdk: 119f43e03d5b444dfe7d91ed683b3b35b17ccaed
 
-PODFILE CHECKSUM: ab9cc03787bf29fb09cc364bc68d860ae82c9178
+PODFILE CHECKSUM: 890025e60240dba7e113c828852dc7e313761d18
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.15.2

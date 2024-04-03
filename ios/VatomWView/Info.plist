@@ -31,5 +31,7 @@
 			</array>
 		</dict>
 	</dict>
+    <key>NSFaceIDUsageDescription</key>
+    <string>Vatom Authentication with TouchId or FaceID</string>
 </dict>
 </plist>

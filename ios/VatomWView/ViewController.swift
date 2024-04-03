@@ -7,13 +7,14 @@
 
 import UIKit
 import vatom_wallet_sdk
-
+import MnemonicSwift
 
 
 
 class ViewController: UIViewController, UIScrollViewDelegate {
     var wallet: VatomWallet?
     let floatingButton = UIButton()
+    var privateKey: SecKey?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let businessId = "nQwtevgfOa"
         let experienceUrl = "https://vatom.com"
         let mapStyles = self.loadMapStyles()
-
         
         let config = VatomConfig(
             baseUrl: "https://wallet.vatominc.com",
@@ -219,7 +219,28 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Action Handlers
     @objc func showActionSheet() {
+        
         let actionSheet = UIAlertController(title: "Select an Option", message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Access Key", style: .default, handler: { _ in
+            
+//            if let englishMnemonic = try? Mnemonic.generateMnemonic(strength: 64, language: .english) {
+//                return false
+//            }
+            
+            if let words = try? Mnemonic.generateMnemonic(strength: 64, language: .english) {
+              // generate key                
+//                self.privateKey = self.wallet?.createKey(words)
+                self.wallet?.storeDataAndEncrypt(key: "seedphrase2", words: words)
+           }
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Get Words", style: .default, handler: { _ in
+            self.wallet?.retrieveStoredDataAndDecrypt(key: "seedphrase2")
+//            self.wallet?.getKey()
+            // MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEt1498s/dfmDKs9TG9uhuGVjLYaaguTRV7z5Zgnbqf+/oFWYeEnVviMgrLm6c8omU+M6ydUUUsEzg4s+SRZ9aAA==
+        }))
         
         actionSheet.addAction(UIAlertAction(title: "Navigate to Connect", style: .default, handler: { _ in
             self.navigate("Connect")

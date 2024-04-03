@@ -4,5 +4,6 @@ workspace 'VatomWView'
 target 'VatomWView' do
     # pod "vatom-wallet-sdk", :path => "../../wallet-ios-sdk"
     pod "vatom-wallet-sdk"
+    pod "MnemonicSwift"
 
 end
