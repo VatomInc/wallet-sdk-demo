@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
-
-// import 'package:my_app/gradient_color.dart';
+import 'package:vatom_flutter/vatom_classes.dart';
+import 'package:vatom_flutter/vatom_wallet.dart';
 
 main() {
-  final vatomKey = GlobalKey<VatomWalletState>();
-  final VatomConfig vatomConfig = VatomConfig(
-    baseUrl: "https://23e9-201-141-16-18.ngrok-free.app",
-    features: VatomConfigFeatures(
-      hideNavigation: false,
-      scanner: ScannerFeatures(enabled: null),
-      vatom: VatomFeatures(
-        hideTokenActions: true,
-      ),
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
 
   final VatomWallet wallet = VatomWallet(
-    key: vatomKey,
     accessToken:
-        "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoiRHoxRmhpdERBU2g4WG8zaEFmX1pBIiwic3ViIjoiY3hwNGs5cCIsImlhdCI6MTY5NzQ5Mjg2NywiZXhwIjoxNzAwMDg0ODY3LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiaHR0cHM6Ly9pZC52YXRvbS5jb20iLCJhdWQiOiIzSDVxcHlpUXU5In0.EsPZX_kNSxQ08CkrYO3qPBZjckyfrn-rZAdahTg--LJZJJXxDHAPreyIc4KxN3wJ19AF7hy0bQrwXt3bbYKELJMbSIkIb7tduV9-0JucwB5VvvTf_fT_QfItaa1bSfep5F_JtckYOc80v2tXbKXt4At8BZHRzfw8cCCu0uB-pY3zKTr5OuWwsX9Bvjm4Et5LZzT6DDyrN7nvCGWzxaekCtNzhsH8FExWbsHWNTjZIG7IpnrxDQmjmYJHyldhcdNVjbbH4qWLddaywLuMsb9Kq6nMRzOHZzibTop5Aa3lcRgaHJZwCss1OgPOjQxLWcEUQfmmifH0AHW-8_POhvoZEw",
-    config: vatomConfig,
+        "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoiNV9zZ1lVSmJVVWZkTG8wM3lFZEdoIiwic3ViIjoiMGUzN3Y5bCIsImlhdCI6MTcxNDc2OTM1NCwiZXhwIjoxNzE0NzcyOTU0LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiaHR0cHM6Ly9pZC52YXRvbS5jb20iLCJhdWQiOiI5NEpIa2RqOGpGODNqZkZGMkxJOFE0In0.KdS6s_GjRrlqddct5-Q19JeQEx6Qr1TCfxS4LjBPcbijHkAJ5n_e4JmE_J_4Bc2Z7kvgjXXMo-00MsP5GoH2A79tiBhWqkn1p9uEjyFulpYPvhsGLzCRqB5uVRguSib622XPMzhFWMW43pgkk-NGuhejqk_trgcxCM-5xIhx3yX30jOxzdD5Schk_boyC580USruwBfYN8zZjr9C82R0lIVqxDnyX0CN8OaNlfhiRSc3Es6kpL6C_-XZuOV-gVip0gzqnteGoza_BySFb9v7HknZLmW4ROK0hn-wNOBjxr2PXOttk5fE3m7hzoyGEKTdGVnpet-h906ODq_ko7E22g",
+    initialRoute: "map",
+    config: VatomConfigFeatures(
+      hideTokenActions: true,
+      disableArPickup: true,
+      disableNewTokenToast: true,
+      hideDrawer: false,
+      hideNavigation: false,
+      language: "en",
+      scanner: ScannerFeatures(enabled: false),
+      pageConfig: PageConfig(
+        features: PageFeatures(
+          icon: PageFeaturesIcon(badges: false, editions: false, titles: false),
+          footer: PageFeaturesFooter(enabled: true, icons: [
+            PageFeaturesFooterIcon(id: "map", src: "", title: "Map"),
+          ]),
+        ),
+      ),
+    ),
   );
 
   runApp(
@@ -36,22 +41,22 @@ main() {
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      // await vatomKey.currentState?.openCommunity('sahMOa1qQR',
+                      // await wallet.openCommunity('sahMOa1qQR',
                       //     roomId: '!EcINyJyITqdmqVEAVe%3Avatom.com');
-                      var tabs = await vatomKey.currentState?.getCurrentUser();
+                      var tabs = await wallet.getCurrentUser();
                       print(tabs?.toJson());
                     },
                     child: Text('getCurrentUser'),
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      await vatomKey.currentState?.navigateToTab("Connect");
+                      await wallet.navigateToTab("Connect");
                     },
                     child: Text('Connect'),
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      await vatomKey.currentState?.navigateToTab("Home");
+                      await wallet.navigateToTab("map");
                     },
                     child: Text('Home'),
                   ),
@@ -64,5 +69,3 @@ main() {
     ),
   );
 }
-// export 'package:vatom_wallet_sdk/VatomClasses.dart';
-// export 'package:vatom_wallet_sdk/VatomWallet.dart' show VatomWallet;
