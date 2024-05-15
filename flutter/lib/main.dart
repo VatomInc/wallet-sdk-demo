@@ -45,41 +45,29 @@ main() {
               Row(
                 children: [
                   Padding(
-                      padding: EdgeInsets.all(3),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          var tabs = await wallet.getCurrentUser();
-                          print(tabs?.toJson());
-                        },
-                        child: Text('getCurrentUser'),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 12),
-                        ),
-                      )),
-                  Padding(
                     padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {
-                        linkTo("/map");
+                        linkTo("/");
                       },
-                      child: Text('map'),
+                      child: Text('home'),
                       style: ElevatedButton.styleFrom(
                         textStyle: const TextStyle(fontSize: 12),
                       ),
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.all(3),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await wallet.navigateToTab("Wallet");
-                        },
-                        child: const Text('wallet (deprecated)'),
-                        //break text to avoid overflow
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 12),
-                        ),
-                      )),
+                    padding: EdgeInsets.all(3),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        linkTo("/ar");
+                      },
+                      child: Text('ar'),
+                      style: ElevatedButton.styleFrom(
+                        textStyle: const TextStyle(fontSize: 12),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
