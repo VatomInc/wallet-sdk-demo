@@ -307,8 +307,8 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     }
   }
 
+  @deprecated
   Future navigateToTab(String tabRoute, [Map<String, dynamic>? params]) async {
-    print("CONSOLE navigateToTab: $tabRoute");
     // print("CONSOLE navigateToTab: $tabRoute");
 
     // print("CONSOLE loaded: $loaded");
@@ -324,13 +324,8 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
       String url = createUrl(tabRoute.toLowerCase());
       _controller.loadRequest(Uri.parse(url));
     }
-    // print("CONSOLE navigateToTab => tabRoute: $tabRoute");
-
-    // set timeout to wait for the navigation to be ready
 
     await Future.delayed(const Duration(microseconds: 100));
-
-    print("delayed 100 microseconds");
 
     _vatomMessageHandler.sendMsg("walletsdk:navigate", {
       "route": tabRoute,
@@ -339,6 +334,14 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
         ...params ?? {},
       },
     });
+  }
+
+  Future linkTo(String url) async {
+    await Future.delayed(const Duration(microseconds: 100));
+    dynamic res = await _vatomMessageHandler.sendMsg("walletsdk:linkTo", {
+      "url": url,
+    });
+    return res;
   }
 
   Future getTabs() async {
