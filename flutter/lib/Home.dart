@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:vatom_flutter/VatomController.dart';
+import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
 
 class Home extends StatelessWidget {
-  final VatomWalletController? walletController;
-  const Home({super.key, required this.walletController});
+  String? vatomToken;
+  Home({super.key, required this.vatomToken});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: BottomSheetExample(
-          walletController: walletController,
+          vatomToken: vatomToken,
         ),
       ),
     );
@@ -18,8 +19,8 @@ class Home extends StatelessWidget {
 }
 
 class BottomSheetExample extends StatelessWidget {
-  final VatomWalletController? walletController;
-  const BottomSheetExample({super.key, required this.walletController});
+  String? vatomToken;
+  BottomSheetExample({super.key, required this.vatomToken});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,6 @@ class BottomSheetExample extends StatelessWidget {
       child: ElevatedButton(
         child: const Text('Open AR'),
         onPressed: () {
-          walletController?.linkTo("/ar");
           showModalBottomSheet<void>(
             context: context,
             isScrollControlled: true,
@@ -43,14 +43,13 @@ class BottomSheetExample extends StatelessWidget {
                       child: ElevatedButton(
                         child: const Text('Close BottomSheet'),
                         onPressed: () {
-                          walletController?.linkTo("/");
                           Navigator.pop(context);
                         },
                       ),
                     ),
                     Expanded(
                       child: _Ar(
-                        walletController: walletController,
+                        vatomToken: vatomToken,
                       ),
                     ),
                   ],
@@ -65,11 +64,18 @@ class BottomSheetExample extends StatelessWidget {
 }
 
 class _Ar extends StatelessWidget {
-  final VatomWalletController? walletController;
-  const _Ar({super.key, required this.walletController});
+  String? vatomToken;
+  _Ar({super.key, required this.vatomToken});
 
   @override
   Widget build(BuildContext context) {
+    final vatomWallet = VatomWallet(
+      accessToken: vatomToken,
+      config: VatomConfigFeatures(
+        path: "/ar",
+      ),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -77,8 +83,7 @@ class _Ar extends StatelessWidget {
           height: 600, // Alto deseado
           child: Stack(
             children: [
-              walletController?.wallet ??
-                  const Center(child: CircularProgressIndicator()),
+              vatomWallet ?? const Center(child: CircularProgressIndicator()),
             ],
           ),
         ),

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vatom_flutter/VatomController.dart';
+import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
 
 // }
 
 class Ar extends StatefulWidget {
-  final VatomWalletController? walletController;
-  const Ar({Key? key, required this.walletController}) : super(key: key);
+  String? vatomToken;
+  Ar({Key? key, required this.vatomToken}) : super(key: key);
 
   @override
   _ArState createState() => _ArState();
@@ -13,22 +14,12 @@ class Ar extends StatefulWidget {
 
 class _ArState extends State<Ar> {
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    widget.walletController?.linkTo("/ar");
-  }
-
-  @override
-  void dispose() {
-    // Aquí puedes poner el código que deseas ejecutar justo antes de que la pantalla cambie.
-    print('La pantalla está a punto de cambiar.');
-    widget.walletController?.linkTo("/");
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final vatomWallet = VatomWallet(
+      accessToken: widget.vatomToken,
+      config: VatomConfigFeatures(path: "/ar"),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -36,8 +27,7 @@ class _ArState extends State<Ar> {
             Expanded(
                 child: Stack(
               children: [
-                widget.walletController?.wallet ??
-                    const Center(child: CircularProgressIndicator()),
+                vatomWallet ?? const Center(child: CircularProgressIndicator()),
               ],
             )),
           ],
