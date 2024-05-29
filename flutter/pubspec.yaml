@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  vatom_wallet_sdk: ^0.0.24
+  vatom_wallet_sdk: ^0.0.26
 
 dev_dependencies:
   flutter_test:
