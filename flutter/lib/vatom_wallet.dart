@@ -55,7 +55,6 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
       String? url = await _controller.currentUrl();
       //validate that the url is not null
       // ignore: unnecessary_null_comparison
-      print("CONSOLE.didChangeAppLifecycleState url: $url");
       if (url != null) _setCurrentUrl(url);
     } else if (state == AppLifecycleState.resumed) {
       _setCurrentUrl("");
@@ -168,8 +167,6 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
 
     String? currentUrl = await getFromLocalStorage(routeKey);
 
-    print("CONSOLE currentUrl: $currentUrl");
-
     if (currentUrl == null || currentUrl == '') {
       String url = createUrl();
 
@@ -180,7 +177,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   }
 
   String createUrl() {
-    String src = config?.baseUrl ?? "https://wallet.vatominc.com";
+    String src = config?.baseUrl ?? "https://wallet.vatom.com";
 
     if (businessId != null) {
       print(
@@ -194,13 +191,9 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
       }
     }
 
-    print("CONSOLE config?.path: ${config?.path}");
-
     if (config?.path != null) {
       src += config?.path ?? "";
     }
-
-    print("CONSOLE src: $src");
 
     return src;
   }

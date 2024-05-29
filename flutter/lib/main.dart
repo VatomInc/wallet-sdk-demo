@@ -16,6 +16,7 @@ main() {
       hideTokenActions: true,
       disableArPickup: true,
       disableNewTokenToast: true,
+      baseUrl: "https://wallet.vatominc.com",
       hideDrawer: false,
       hideNavigation: false,
       language: "en",
