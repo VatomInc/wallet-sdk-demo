@@ -315,6 +315,7 @@ class PageConfig {
 class VatomConfigFeatures {
   PageConfig? pageConfig;
   String? baseUrl;
+  String? path;
   String? language;
   ScannerFeatures? scanner;
   List<String>? visibleTabs;
@@ -327,9 +328,11 @@ class VatomConfigFeatures {
   String? emptyStateImage;
   String? emptyStateTitle;
   String? emptyStateMessage;
+  String? systemThemeOverride;
 
   VatomConfigFeatures(
       {this.baseUrl,
+      this.path,
       this.language,
       this.scanner,
       this.visibleTabs,
@@ -342,10 +345,12 @@ class VatomConfigFeatures {
       this.disableArPickup,
       this.emptyStateImage,
       this.emptyStateTitle,
-      this.emptyStateMessage});
+      this.emptyStateMessage,
+      this.systemThemeOverride});
 
   Map<String, dynamic> toJson() => {
         "baseUrl": baseUrl,
+        "path": path,
         "language": language,
         "scanner": scanner?.toJson(),
         "visibleTabs": visibleTabs,
@@ -359,5 +364,6 @@ class VatomConfigFeatures {
         "emptyStateImage": emptyStateImage,
         "emptyStateTitle": emptyStateTitle,
         "emptyStateMessage": emptyStateMessage,
+        "systemThemeOverride": systemThemeOverride
       };
 }

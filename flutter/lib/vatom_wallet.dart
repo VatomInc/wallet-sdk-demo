@@ -53,6 +53,9 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.paused) {
       String? url = await _controller.currentUrl();
+      //validate that the url is not null
+      // ignore: unnecessary_null_comparison
+      print("CONSOLE.didChangeAppLifecycleState url: $url");
       if (url != null) _setCurrentUrl(url);
     } else if (state == AppLifecycleState.resumed) {
       _setCurrentUrl("");
@@ -165,8 +168,10 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
 
     String? currentUrl = await getFromLocalStorage(routeKey);
 
+    print("CONSOLE currentUrl: $currentUrl");
+
     if (currentUrl == null || currentUrl == '') {
-      String url = createUrl(initialRoute);
+      String url = createUrl();
 
       _controller.loadRequest(Uri.parse(url));
     } else {
@@ -174,8 +179,48 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     }
   }
 
-  String createUrl([String? tab]) {
-    return "${config?.baseUrl ?? "https://wallet.vatom.com"}${businessId != null ? "/b/$businessId" : ""}${tab != null ? "/$tab" : ""}";
+  String createUrl() {
+    String src = config?.baseUrl ?? "https://wallet.vatominc.com";
+
+    if (businessId != null) {
+      print(
+          "Business ID was passed trough config, this is deprecated and will be removed in the future. Please pass the path you intend to use in the config to target the expected initial route. i.e. /b/:businessId  /b/:businessId/map");
+
+      if (config?.path == null) {
+        src += "/b/$businessId";
+      } else {
+        print(
+            'Both businessId and path were passed, the path will be used instead of the businessId');
+      }
+    }
+
+    print("CONSOLE config?.path: ${config?.path}");
+
+    if (config?.path != null) {
+      src += config?.path ?? "";
+    }
+
+    print("CONSOLE src: $src");
+
+    return src;
+  }
+
+  String createUrlWithTab([String? tab]) {
+    String src = config?.baseUrl ?? "https://wallet.vatom.com";
+
+    if (businessId != null) {
+      src += "/b/$businessId";
+    }
+
+    if (tab != null) {
+      if (tab.startsWith("/")) {
+        tab = tab.substring(1);
+      }
+
+      src += "/$tab";
+    }
+
+    return src;
   }
 
   initSDK() {
@@ -184,6 +229,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
       // set location handler
       _vatomMessageHandler.handle('vatomwallet:getCurrentPosition',
           VatomLocationHandler().responseMessage);
+
       // init SDK
       sendMsgWithoutResponse("wallet-sdk-init", {
         "accessToken": accessToken,
@@ -230,9 +276,9 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     _vatomMessageHandler.sendMsg(name, payload).catchError(doNothingAction);
   }
 
-  setInitialRoute(String? route) {
-    _controller.loadRequest(Uri.parse(
-        "${config?.baseUrl ?? "https://wallet.vatom.com"}${businessId != null ? "/b/$businessId" : ""}/${route?.toLowerCase() ?? ""}"));
+  setInitialRoute() {
+    String url = createUrl();
+    _controller.loadRequest(Uri.parse(url));
   }
 
   // Function to be called by the host to perform an action on a token
@@ -307,13 +353,13 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     }
   }
 
-  @deprecated
+  @Deprecated("Use linkTo instead")
   Future navigateToTab(String tabRoute, [Map<String, dynamic>? params]) async {
     // print("CONSOLE navigateToTab: $tabRoute");
 
     // print("CONSOLE loaded: $loaded");
     if (!loaded) {
-      String url = createUrl(tabRoute.toLowerCase());
+      String url = createUrlWithTab(tabRoute.toLowerCase());
       _controller.loadRequest(Uri.parse(url));
 
       return;
@@ -321,12 +367,11 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     var navigationIsReady = await isNavigationReady();
     // print("CONSOLE navigationIsReady: $navigationIsReady  ");
     if (!navigationIsReady) {
-      String url = createUrl(tabRoute.toLowerCase());
+      String url = createUrlWithTab(tabRoute.toLowerCase());
       _controller.loadRequest(Uri.parse(url));
+      return;
     }
-
     await Future.delayed(const Duration(microseconds: 100));
-
     _vatomMessageHandler.sendMsg("walletsdk:navigate", {
       "route": tabRoute,
       "params": {
@@ -337,7 +382,22 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   }
 
   Future linkTo(String url) async {
+    if (!loaded) {
+      String link = createUrlWithTab(url.toLowerCase());
+
+      _controller.loadRequest(Uri.parse(link));
+    }
+
+    var navigationIsReady = await isNavigationReady();
+
+    if (!navigationIsReady) {
+      String link = createUrlWithTab(url.toLowerCase());
+      _controller.loadRequest(Uri.parse(link));
+      return;
+    }
+
     await Future.delayed(const Duration(microseconds: 100));
+
     dynamic res = await _vatomMessageHandler.sendMsg("walletsdk:linkTo", {
       "url": url,
     });
