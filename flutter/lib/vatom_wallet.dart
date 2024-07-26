@@ -9,7 +9,6 @@ import 'vatom_message_handler.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
@@ -32,6 +31,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   final VatomConfigFeatures? config;
   late String? refreshToken;
   final Function? onInventoryUpdate;
+  final Function? onCustomActionReceived;
   var loaded = false;
   var started = false;
   var isLoadedToWork = false;
@@ -44,22 +44,26 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
       this.config,
       this.refreshToken,
       this.initialRoute,
-      this.onInventoryUpdate}) {
+      this.onInventoryUpdate,
+      this.onCustomActionReceived}) {
     initState();
     WidgetsBinding.instance.addObserver(this);
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.paused) {
-      String? url = await _controller.currentUrl();
-      //validate that the url is not null
-      // ignore: unnecessary_null_comparison
-      if (url != null) _setCurrentUrl(url);
-    } else if (state == AppLifecycleState.resumed) {
-      _setCurrentUrl("");
-    }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) async {
+  //   if (state == AppLifecycleState.paused) {
+  //     String? url = await _controller.currentUrl();
+  //     //validate that the url is not null
+  //     // ignore: unnecessary_null_comparison
+  //     if (url != null) _setCurrentUrl(url);
+
+  //     return;
+  //   }
+
+  //   print("Bahia didChangeAppLifecycleState $state  _setCurrentUrl(" ");");
+  //   _setCurrentUrl("");
+  // }
 
   Future<void> handleCameraPermissions(WebViewPermissionRequest request) async {
     bool isCameraGranted = await Permission.camera.isGranted;
@@ -116,6 +120,8 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
             if (request.isMainFrame &&
                 !request.url.contains("vatom") &&
                 !request.url.contains("ngrok") &&
+                !request.url.contains("localhost") &&
+                !request.url.contains("192.168.0.10") &&
                 !request.url.contains("https://www.google.com/recaptcha")) {
               launchUrl(Uri.parse(request.url));
             }
@@ -165,15 +171,20 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
           "walletsdk:inventoryWasUpdated", onInventoryUpdate as Function);
     }
 
-    String? currentUrl = await getFromLocalStorage(routeKey);
-
-    if (currentUrl == null || currentUrl == '') {
-      String url = createUrl();
-
-      _controller.loadRequest(Uri.parse(url));
-    } else {
-      _controller.loadRequest(Uri.parse(currentUrl));
+    if (onCustomActionReceived != null) {
+      _vatomMessageHandler.handle(
+          "walletsdk:sendCustomAction", onCustomActionReceived as Function);
     }
+
+    // String? currentUrl = await getFromLocalStorage(routeKey);
+
+    // if (currentUrl == null || currentUrl == '') {
+    String url = createUrl();
+
+    _controller.loadRequest(Uri.parse(url));
+    // } else {
+    //   _controller.loadRequest(Uri.parse(currentUrl));
+    // }
   }
 
   String createUrl() {
@@ -228,6 +239,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
         "accessToken": accessToken,
         "embeddedType": "flutter-${Platform.operatingSystem}",
         "businessId": businessId,
+        "walletConfig": config?.walletConfig?.toJson() ?? AppConfiguration(),
         "config": config?.toJson(),
         "refreshToken": refreshToken
       });
@@ -247,19 +259,19 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     loaded = state;
   }
 
-  _setCurrentUrl(String url) {
-    saveToLocalStorage(routeKey, url);
-  }
+  // _setCurrentUrl(String url) {
+  //   saveToLocalStorage(routeKey, url);
+  // }
 
-  void saveToLocalStorage(String key, String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(key, value);
-  }
+  // void saveToLocalStorage(String key, String value) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.setString(key, value);
+  // }
 
-  Future<String?> getFromLocalStorage(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key);
-  }
+  // Future<String?> getFromLocalStorage(String key) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   return prefs.getString(key);
+  // }
 
   doNothingAction(dynamic x) {
     return;
@@ -269,10 +281,10 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     _vatomMessageHandler.sendMsg(name, payload).catchError(doNothingAction);
   }
 
-  setInitialRoute() {
-    String url = createUrl();
-    _controller.loadRequest(Uri.parse(url));
-  }
+  // setInitialRoute() {
+  //   String url = createUrl();
+  //   _controller.loadRequest(Uri.parse(url));
+  // }
 
   // Function to be called by the host to perform an action on a token
   Future performAction(
@@ -335,6 +347,11 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
         .sendMsg("walletsdk:getPublicProfile", {"userId": userId});
   }
 
+  Future getCurrentUserPoints(String campaignId) async {
+    return await _vatomMessageHandler
+        .sendMsg("walletsdk:getCurrentUserPoints", {"campaignId": campaignId});
+  }
+
   Future<UserData?> getCurrentUser() async {
     try {
       dynamic user =
@@ -376,7 +393,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
 
   Future linkTo(String url) async {
     if (!loaded) {
-      String link = createUrlWithTab(url.toLowerCase());
+      String link = createUrlWithTab(url);
 
       _controller.loadRequest(Uri.parse(link));
     }
@@ -384,13 +401,19 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     var navigationIsReady = await isNavigationReady();
 
     if (!navigationIsReady) {
-      String link = createUrlWithTab(url.toLowerCase());
+      String link = createUrlWithTab(url);
       _controller.loadRequest(Uri.parse(link));
       return;
     }
 
     await Future.delayed(const Duration(microseconds: 100));
 
+    if (businessId != null && !url.contains("/b/$businessId")) {
+      if (url[0] != "/") {
+        url = "/$url";
+      }
+      url = "/b/$businessId$url";
+    }
     dynamic res = await _vatomMessageHandler.sendMsg("walletsdk:linkTo", {
       "url": url,
     });

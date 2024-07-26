@@ -329,24 +329,27 @@ class VatomConfigFeatures {
   String? emptyStateTitle;
   String? emptyStateMessage;
   String? systemThemeOverride;
+  AppConfiguration? walletConfig;
 
-  VatomConfigFeatures(
-      {this.baseUrl,
-      this.path,
-      this.language,
-      this.scanner,
-      this.visibleTabs,
-      this.hideNavigation,
-      this.hideDrawer,
-      this.hideTokenActions,
-      this.disableNewTokenToast,
-      this.pageConfig,
-      this.mapStyle,
-      this.disableArPickup,
-      this.emptyStateImage,
-      this.emptyStateTitle,
-      this.emptyStateMessage,
-      this.systemThemeOverride});
+  VatomConfigFeatures({
+    this.baseUrl,
+    this.path,
+    this.language,
+    this.scanner,
+    this.visibleTabs,
+    this.hideNavigation,
+    this.hideDrawer,
+    this.hideTokenActions,
+    this.disableNewTokenToast,
+    this.pageConfig,
+    this.mapStyle,
+    this.disableArPickup,
+    this.emptyStateImage,
+    this.emptyStateTitle,
+    this.emptyStateMessage,
+    this.systemThemeOverride,
+    this.walletConfig,
+  });
 
   Map<String, dynamic> toJson() => {
         "baseUrl": baseUrl,
@@ -364,6 +367,460 @@ class VatomConfigFeatures {
         "emptyStateImage": emptyStateImage,
         "emptyStateTitle": emptyStateTitle,
         "emptyStateMessage": emptyStateMessage,
-        "systemThemeOverride": systemThemeOverride
+        "systemThemeOverride": systemThemeOverride,
+        "appConfiguration": walletConfig?.toJson(),
+      };
+}
+
+class Inventory {
+  List<String>? fqdnWhitelist;
+  List<String>? tvBlacklist;
+  List<String>? objectDefinitionBlacklist;
+  bool? splashContent;
+  List<String>? pinned;
+
+  Inventory({
+    this.fqdnWhitelist = const [],
+    this.tvBlacklist = const [],
+    this.objectDefinitionBlacklist = const [],
+    this.splashContent = true,
+    this.pinned = const [],
+  });
+
+  Map<String, dynamic> toJson() => {
+        "fqdnWhitelist": fqdnWhitelist,
+        "tvBlacklist": tvBlacklist,
+        "objectDefinitionBlacklist": objectDefinitionBlacklist,
+        "splashContent": splashContent,
+        "pinned": pinned,
+      };
+}
+
+class LinearGradient {
+  List<String> colors;
+  List<double>? start;
+  List<double>? end;
+  List<double>? locations;
+
+  LinearGradient({
+    required this.colors,
+    this.start,
+    this.end,
+    this.locations,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "colors": colors,
+        "start": start,
+        "end": end,
+        "locations": locations,
+      };
+}
+
+class NativeBaseColor {
+  String? color;
+  LinearGradient? linearGradient;
+
+  NativeBaseColor({
+    this.color,
+    this.linearGradient,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "color": color,
+        "linearGradient": linearGradient?.toJson(),
+      };
+}
+
+class ARConfig {
+  double visibleRadius;
+  int maxItems;
+  bool resizeObjects;
+  double desiredRadius;
+  String scalingStrategy;
+  double distanceFromCamera;
+  double objectBaseHeight;
+  double minDistance;
+  double additionalRandomDistance;
+  String ambientLightColor;
+
+  ARConfig({
+    this.visibleRadius = 500,
+    this.maxItems = 5,
+    this.resizeObjects = true,
+    this.desiredRadius = 1,
+    this.scalingStrategy = 'new',
+    this.distanceFromCamera = 5,
+    this.objectBaseHeight = 2,
+    this.minDistance = 5,
+    this.additionalRandomDistance = 10,
+    this.ambientLightColor = '0x404040',
+  });
+
+  Map<String, dynamic> toJson() => {
+        "visibleRadius": visibleRadius,
+        "maxItems": maxItems,
+        "resizeObjects": resizeObjects,
+        "desiredRadius": desiredRadius,
+        "scalingStrategy": scalingStrategy,
+        "distanceFromCamera": distanceFromCamera,
+        "objectBaseHeight": objectBaseHeight,
+        "minDistance": minDistance,
+        "additionalRandomDistance": additionalRandomDistance,
+        "ambientLightColor": ambientLightColor,
+      };
+}
+
+class Version {
+  String recommended;
+  String minimum;
+  String link;
+
+  Version({
+    required this.recommended,
+    required this.minimum,
+    required this.link,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "recommended": recommended,
+        "minimum": minimum,
+        "link": link,
+      };
+}
+
+class ApiConfig {
+  String? vatom;
+  String? vatoms;
+  String? userVatom;
+  String? oidc;
+  String? geo;
+  String? billing;
+  String? businesses;
+  String? studio;
+  String? points;
+  String? events;
+  String? loyalty;
+  String? network;
+  String? users;
+
+  ApiConfig({
+    this.vatom = 'https://api.vi.vatom.network',
+    this.vatoms = 'https://vatoms.api.vatominc.com',
+    this.userVatom = 'https://api.vi.vatom.network',
+    this.oidc = 'https://id.vatom.com',
+    this.geo = 'https://maps.googleapis.com',
+    this.billing = 'https://billing.api.vatominc.com',
+    this.businesses = 'https://businesses.api.vatominc.com',
+    this.studio = 'https://studio.api.vatominc.com',
+    this.points = 'https://points.api.vatominc.com',
+    this.events = 'https://events.api.vatominc.com',
+    this.loyalty = 'https://loyalty.api.vatominc.com',
+    this.network = 'https://network.api.vatominc.com',
+    this.users = 'https://users.vatom.com/',
+  });
+
+  Map<String, dynamic> toJson() => {
+        "vatom": vatom,
+        "vatoms": vatoms,
+        "userVatom": userVatom,
+        "oidc": oidc,
+        "geo": geo,
+        "billing": billing,
+        "businesses": businesses,
+        "studio": studio,
+        "points": points,
+        "events": events,
+        "loyalty": loyalty,
+        "network": network,
+        "users": users,
+      };
+}
+
+class PickupConfig {
+  bool enabled;
+  String redirect;
+
+  PickupConfig({
+    this.enabled = true,
+    this.redirect = 'https://maps.google.com',
+  });
+
+  Map<String, dynamic> toJson() => {
+        "enabled": enabled,
+        "redirect": redirect,
+      };
+}
+
+class MapsConfig {
+  PickupConfig pickup;
+  List<String> fqdnWhitelist;
+  int maxItems;
+
+  MapsConfig({
+    required this.pickup,
+    this.fqdnWhitelist = const [],
+    this.maxItems = 20,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "pickup": pickup.toJson(),
+        "fqdnWhitelist": fqdnWhitelist,
+        "maxItems": maxItems,
+      };
+}
+
+class FirebaseConfig {
+  String apiKey;
+  String authDomain;
+  String databaseURL;
+  String projectId;
+  String storageBucket;
+  String messagingSenderId;
+  String appId;
+  String measurementId;
+
+  FirebaseConfig({
+    this.apiKey = '',
+    this.authDomain = 'ydangle-high-fidelity-test-2.firebaseapp.com',
+    this.databaseURL = 'https://ydangle-high-fidelity-test-2.firebaseio.com',
+    this.projectId = 'ydangle-high-fidelity-test-2',
+    this.storageBucket = 'ydangle-high-fidelity-test-2.appspot.com',
+    this.messagingSenderId = '190616353628',
+    this.appId = '1:190616353628:ios:4cb17f49c64e79342a1f99',
+    this.measurementId = 'G-WJ1NRS9JKW',
+  });
+
+  Map<String, dynamic> toJson() => {
+        "apiKey": apiKey,
+        "authDomain": authDomain,
+        "databaseURL": databaseURL,
+        "projectId": projectId,
+        "storageBucket": storageBucket,
+        "messagingSenderId": messagingSenderId,
+        "appId": appId,
+        "measurementId": measurementId,
+      };
+}
+
+class IconConfig {
+  String? icon;
+  Object? style; // Placeholder for ImageStyle
+
+  IconConfig({this.icon, this.style});
+
+  Map<String, dynamic> toJson() => {
+        "icon": icon,
+        "style": style,
+      };
+}
+
+class ActionConfig {
+  String? text;
+  String? leftIcon;
+  Object? style; // Placeholder for TextStyle
+  String action;
+
+  ActionConfig({
+    this.text,
+    this.leftIcon,
+    this.style,
+    required this.action,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "text": text,
+        "leftIcon": leftIcon,
+        "style": style,
+        "action": action,
+      };
+}
+
+class FeaturesConfig {
+  Inventory? inventory;
+  ARConfig? ar;
+  MapsConfig? maps;
+  List<String> allowedChains;
+  String? favicon;
+  IconConfig? customActionBtn;
+  List<ActionConfig>? customActions;
+  bool hideCloseButtonOnNft = false;
+  String? filtersUserInventory;
+
+  FeaturesConfig({
+    this.inventory,
+    this.ar,
+    this.maps,
+    this.allowedChains = const ['sol', 'eth', 'cspr'],
+    this.favicon,
+    this.customActionBtn,
+    this.customActions,
+    this.hideCloseButtonOnNft = false,
+    this.filtersUserInventory,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "inventory": inventory?.toJson(),
+        "ar": ar?.toJson(),
+        "maps": maps?.toJson(),
+        "allowedChains": allowedChains,
+        "favicon": favicon,
+        "customActionBtn": customActionBtn?.toJson(),
+        "customActions":
+            customActions?.map((action) => action.toJson()).toList(),
+        "hideCloseButtonOnNft": hideCloseButtonOnNft,
+        "filtersUserInventory": filtersUserInventory,
+      };
+}
+
+class AuthConfig {
+  String clientId;
+  bool useProxy;
+  String discoveryUrl;
+  String redirectUri;
+  List<String> scopes;
+
+  AuthConfig({
+    this.clientId = '94JHkdj8jF83jfFF2LI8Q4',
+    this.useProxy = false,
+    this.discoveryUrl = 'https://id.vatom.com',
+    this.redirectUri = 'com.vatom://auth',
+    this.scopes = const ['openid', 'profile', 'email', 'offline_access'],
+  });
+
+  Map<String, dynamic> toJson() => {
+        "clientId": clientId,
+        "useProxy": useProxy,
+        "discoveryUrl": discoveryUrl,
+        "redirectUri": redirectUri,
+        "scopes": scopes,
+      };
+}
+
+class AppConfiguration {
+  String appID;
+  String appTitle;
+  String businessId;
+  List<String>? subBusinesses;
+  String viewerId;
+  String oauthServer;
+  String oidcAuthority;
+  String oidcClientId;
+  String? mapBoxKey;
+  String? studioServer;
+  String? googleMapsKey;
+  String? googleContactsClientID;
+  String? analyticsTrackingID;
+  String? geoLocationApi;
+  String? algoliaApiKey;
+  String algoliaAppId;
+  FirebaseConfig? firebase;
+  String? websocketServer;
+  FeaturesConfig? features;
+  String firebaseVapidKey;
+  String? appKey8thWall;
+  AuthConfig? authentication;
+  String? server;
+  ApiConfig? api;
+  List<String>? browserCompatbilityRegexes;
+  Map<String, Version>? versions;
+  String? termsOfUseURL;
+  String? privacyPolicyURL;
+  String? supportURL;
+  List<String>? showGeneralInfo;
+  bool showProductSelector;
+  bool showUsername;
+  bool showUserQRCode;
+  bool showUserRelations;
+  bool showEditProfile;
+  bool showManageAccountButton;
+  bool showBusinessProfile;
+  NativeBaseColor? profileHeaderBackgroundColor;
+
+  AppConfiguration({
+    this.appID = 'd9fd1482-3625-4746-854f-726b9032d4ff',
+    this.appTitle = 'Vatom Viewer',
+    this.businessId = 'system',
+    this.subBusinesses,
+    this.viewerId = '94JHkdj8jF83jfFF2LI8Q4',
+    this.oauthServer = 'https://id.vatom.com',
+    this.oidcAuthority = 'https://id.vatom.com',
+    this.oidcClientId = '94JHkdj8jF83jfFF2LI8Q4',
+    this.mapBoxKey =
+        'pk.eyJ1IjoiYXNoaXNoYXR2YXRvbWluYyIsImEiOiJjazlpdXR3M2YwMGNjM2xwcGE1ZDhqMm5jIn0.xBI8uwwTY1H-NOAgtTBvOg',
+    this.studioServer,
+    this.googleMapsKey = '',
+    this.googleContactsClientID = "",
+    this.analyticsTrackingID,
+    this.geoLocationApi =
+        'https://api.ipstack.com/check?access_key=f6c1392b737ae773c32e839ccd03e87f&fields=country_code,latitude,longitude',
+    this.algoliaApiKey = 'be2a4102cb0d9d9d6e3cadd46dbf24dc',
+    this.algoliaAppId = '1WB4E7CA90',
+    this.firebase,
+    this.websocketServer,
+    this.features,
+    this.firebaseVapidKey =
+        'BKVxCEXAz6fv-PP0B6ThsF56acxr4bJ14ku-LDZR-vb2LH4ejeeAvCaxGvq2YPpuVX6JWw80_6EE6XeLPwTiMGs',
+    this.appKey8thWall =
+        'q6f9KSydWOgg0tZAqX7lKHT1kXBa8GNvgQqwxk6UGTadk8Io1pqPBUMt9HTlTLJx4d49lR',
+    this.authentication,
+    this.server = 'https://api.vi.vatom.network',
+    this.api,
+    this.browserCompatbilityRegexes,
+    this.versions,
+    this.termsOfUseURL = 'https://www.vatom.com/terms-of-service/',
+    this.privacyPolicyURL = 'http://www.vatom.com/privacy-policy',
+    this.supportURL = 'https://support.vatom.com/hc/en-us/requests/new',
+    this.showGeneralInfo,
+    this.showProductSelector = false,
+    this.showUsername = true,
+    this.showUserQRCode = true,
+    this.showUserRelations = true,
+    this.showEditProfile = true,
+    this.showManageAccountButton = true,
+    this.showBusinessProfile = true,
+    this.profileHeaderBackgroundColor,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "appID": appID,
+        "appTitle": appTitle,
+        "businessId": businessId,
+        "subBusinesses": subBusinesses,
+        "viewerId": viewerId,
+        "oauthServer": oauthServer,
+        "oidcAuthority": oidcAuthority,
+        "oidcClientId": oidcClientId,
+        "mapBoxKey": mapBoxKey,
+        "studioServer": studioServer,
+        "googleMapsKey": googleMapsKey,
+        "googleContactsClientID": googleContactsClientID,
+        "analyticsTrackingID": analyticsTrackingID,
+        "geoLocationApi": geoLocationApi,
+        "algoliaApiKey": algoliaApiKey,
+        "algoliaAppId": algoliaAppId,
+        "firebase": firebase?.toJson() ?? FirebaseConfig(),
+        "websocketServer": websocketServer,
+        "features": features?.toJson() ?? FeaturesConfig(),
+        "firebaseVapidKey": firebaseVapidKey,
+        "appKey8thWall": appKey8thWall,
+        "authentication": authentication?.toJson() ?? AuthConfig(),
+        "server": server,
+        "api": api?.toJson(),
+        "browserCompatbilityRegexes": browserCompatbilityRegexes,
+        "versions":
+            versions?.map((key, value) => MapEntry(key, value.toJson())),
+        "termsOfUseURL": termsOfUseURL,
+        "privacyPolicyURL": privacyPolicyURL,
+        "supportURL": supportURL,
+        "showGeneralInfo": showGeneralInfo,
+        "showProductSelector": showProductSelector,
+        "showUsername": showUsername,
+        "showUserQRCode": showUserQRCode,
+        "showUserRelations": showUserRelations,
+        "showEditProfile": showEditProfile,
+        "showManageAccountButton": showManageAccountButton,
+        "showBusinessProfile": showBusinessProfile,
+        "profileHeaderBackgroundColor": profileHeaderBackgroundColor?.toJson(),
       };
 }

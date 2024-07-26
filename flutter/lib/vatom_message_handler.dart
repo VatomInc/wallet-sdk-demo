@@ -38,7 +38,9 @@ class VatomMessageHandler {
 
   onMessage(JavaScriptMessage msg) {
     var data = decodeMessage(msg);
+    print('Received message: $data');
     final name = data?.name;
+    print('Received message: $name');
     final id = data?.id;
     final request = data?.request;
     final payload = data?.payload;
