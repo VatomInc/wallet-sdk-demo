@@ -32,6 +32,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   late String? refreshToken;
   final Function? onInventoryUpdate;
   final Function? onCustomActionReceived;
+  final Function? onMessageReceived;
   var loaded = false;
   var started = false;
   var isLoadedToWork = false;
@@ -45,7 +46,8 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
       this.refreshToken,
       this.initialRoute,
       this.onInventoryUpdate,
-      this.onCustomActionReceived}) {
+      this.onCustomActionReceived,
+      this.onMessageReceived}) {
     initState();
     WidgetsBinding.instance.addObserver(this);
   }
@@ -174,6 +176,11 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     if (onCustomActionReceived != null) {
       _vatomMessageHandler.handle(
           "walletsdk:sendCustomAction", onCustomActionReceived as Function);
+    }
+
+    if (onMessageReceived != null) {
+      _vatomMessageHandler.handle(
+          "walletsdk:sdkMessage", onMessageReceived as Function);
     }
 
     // String? currentUrl = await getFromLocalStorage(routeKey);

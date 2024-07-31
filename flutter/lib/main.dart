@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
           "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoiZXRkbDdVOERMRTZOSlFUVUtxZXpOIiwic3ViIjoiMGUzN3Y5bCIsImlhdCI6MTcyMTI1OTA0NiwiZXhwIjoxNzIxMjYyNjQ2LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiaHR0cHM6Ly9pZC52YXRvbS5jb20iLCJhdWQiOiI5NEpIa2RqOGpGODNqZkZGMkxJOFE0In0.k45kI8unleV8PAlRX4V58EMU4CLxPkmmEyiw4dSpcMSvQQLpvgXicTsxpwNrg2i10vULtBRecimWlHqtK-XtyPJZh60xprvUInkPgRG-RNNofwGQnmgfQX4AmOKvcWF3GdGY8kDarGzKSGaKzPJp0wEoewRHDrzk2rIDmwtwN_Jdo1TNA1kdJMwisbkddRtOeL9q97efwhmReFkhCBK-Kwq2l-391cKenWJQgxFs0PyYy2MGM9ujt9N0FgQNsULEH38aNhIJGr05I2LybHG2l4tMIk6lT1TklWenBDA8itwKZH4pZcZ055PfaNmGlVal7xLxewutvMiSjrBd6hRE0w",
       initialRoute: "map",
       onCustomActionReceived: customActionReceived,
+      onMessageReceived: onMessageReceived,
       businessId: "nCHNthBpv7",
       config: VatomConfigFeatures(
         // path: "/token/h1cslfJGN9",
@@ -92,6 +93,15 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  void onMessageReceived(data) {
+    print("onMessageReceived token: ${data["token"]}");
+    print("onMessageReceived data: ${data["data"]}");
+    print("onMessageReceived name: ${data["name"]}");
+    // dynamic json = jsonDecode(data);
+    // print("onMessageReceived token: ${json["token"]}");
+    // print("onMessageReceived data: ${json["data"]}");
   }
 
   void customActionReceived(data) {
