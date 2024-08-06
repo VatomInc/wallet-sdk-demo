@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vatom_flutter/VatomWallet.dart';
 import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +30,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    // Inicializar la instancia única de VatomWallet
     wallet = getSingletonwalletInstance();
 
     wallet.on(
@@ -84,9 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Bienvenido a Vatom Wallet',
-            ),
             ElevatedButton(
               onPressed: () => {
                 wallet.linkTo(
