@@ -1,91 +1,111 @@
 import 'package:flutter/material.dart';
+import 'package:vatom_flutter/VatomWallet.dart';
 import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-main() {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
+  runApp(MyApp());
+}
 
-  final VatomWallet wallet = VatomWallet(
-    accessToken: "...accessToken",
-    refreshToken: "...refreshToken",
-    initialRoute: "map",
-    config: VatomConfigFeatures(
-      hideTokenActions: true,
-      disableArPickup: true,
-      disableNewTokenToast: true,
-      hideDrawer: false,
-      hideNavigation: false,
-      language: "en",
-      scanner: ScannerFeatures(enabled: false),
-      pageConfig: PageConfig(
-        features: PageFeatures(
-          icon: PageFeaturesIcon(badges: false, editions: false, titles: false),
-          footer: PageFeaturesFooter(enabled: true, icons: [
-            PageFeaturesFooterIcon(id: "map", src: "", title: "Map"),
-          ]),
-        ),
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Vatom Wallet Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
-    ),
-  );
+      home: MyHomePage(),
+    );
+  }
+}
 
-  void linkTo(String path) async {
-    wallet.linkTo(path).catchError(
-          (error) => print('Error: $error'),
-        );
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late VatomWallet wallet;
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializar la instancia única de VatomWallet
+    wallet = getSingletonwalletInstance();
+
+    wallet.on(
+        "viewer.view.close", (data) => {print(data), Navigator.pop(context)});
   }
 
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: wallet,
-              ),
-              Row(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.all(3),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          var tabs = await wallet.getCurrentUser();
-                          print(tabs?.toJson());
-                        },
-                        child: Text('getCurrentUser'),
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 12),
-                        ),
-                      )),
-                  Padding(
-                    padding: EdgeInsets.all(3),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        linkTo("/map");
+  void _showActionSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.9,
+          minChildSize: 0.5,
+          maxChildSize: 0.9,
+          expand: false,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return FractionallySizedBox(
+              heightFactor: 0.9,
+              child: SafeArea(
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      leading: const Icon(Icons.cancel),
+                      title: const Text('Close'),
+                      onTap: () {
+                        Navigator.pop(context);
                       },
-                      child: Text('map'),
-                      style: ElevatedButton.styleFrom(
-                        textStyle: const TextStyle(fontSize: 12),
-                      ),
                     ),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.all(3),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await wallet.navigateToTab("Wallet");
-                        },
-                        child: const Text('wallet (deprecated)'),
-                        //break text to avoid overflow
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 12),
-                        ),
-                      )),
-                ],
+                    Expanded(
+                      child: wallet.build(context),
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Vatom Wallet Example'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Bienvenido a Vatom Wallet',
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                wallet.linkTo(
+                    "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=D4l9pLrXJr&autoClaim=true&sync=true"),
+                _showActionSheet(context)
+              },
+              child: const Text('open D4l9pLrXJr'),
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                wallet.linkTo(
+                    "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=Bl50jKxgg0&autoClaim=true&sync=true"),
+                _showActionSheet(context)
+              },
+              child: const Text('open Bl50jKxgg0'),
+            ),
+          ],
         ),
       ),
-    ),
-  );
+    );
+  }
 }
