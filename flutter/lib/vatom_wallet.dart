@@ -36,6 +36,7 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   var loaded = false;
   var started = false;
   var isLoadedToWork = false;
+  final Map<String, Function> _messageHandlersWebView = {};
 
   VatomWallet(
       {super.key,
@@ -66,6 +67,11 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   //   print("Bahia didChangeAppLifecycleState $state  _setCurrentUrl(" ");");
   //   _setCurrentUrl("");
   // }
+
+  void on(String msg, Function handler) {
+    print("on $msg");
+    _messageHandlersWebView[msg] = handler;
+  }
 
   Future<void> handleCameraPermissions(WebViewPermissionRequest request) async {
     bool isCameraGranted = await Permission.camera.isGranted;
@@ -135,7 +141,33 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
         ),
       )
       ..addJavaScriptChannel('vatomMessageHandler',
-          onMessageReceived: _vatomMessageHandler.onMessage);
+          onMessageReceived: (JavaScriptMessage message) {
+        dynamic data = _vatomMessageHandler.decodeMessage(message);
+        final name = data?.name;
+
+        final payload = data?.payload;
+
+        if (name == "walletsdk:analytics") {
+          if (payload is Map) {
+            final eventName = payload["name"];
+
+            print("walletsdk:analytics: $eventName");
+            print(
+                "walletsdk:analytics:  payload[payload] ${payload["payload"]}");
+
+            if (_messageHandlersWebView.containsKey(eventName)) {
+              _messageHandlersWebView[eventName]!(
+                {
+                  "token": payload["token"] ?? {},
+                  "payload": payload["payload"] ?? {},
+                },
+              ); // Call the handler with the payload
+            }
+          }
+        } else {
+          _vatomMessageHandler.onMessage(message);
+        }
+      });
 
     // Debugg ios
     if (_controller.platform is WebKitWebViewController && kDebugMode) {

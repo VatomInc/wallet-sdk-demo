@@ -33,16 +33,54 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     wallet = initializeWallet();
+
+    wallet.on('closeVatom', (data) {
+      final token = data["token"];
+
+      final private = token["private"];
+
+      final quiz = private["quiz-v2"];
+      print("walletsdk:analytics quiz: $quiz");
+      final poll = private["poll-v1"];
+      print("walletsdk:analytics poll: $poll");
+
+//       lutter: walletsdk:analytics: openVatom
+// flutter: walletsdk:analytics: performAction
+// flutter: walletsdk:analytics: closeVatom
+// flutter: walletsdk:analytics quiz: null
+// flutter: walletsdk:analytics poll: {lastReplied: , question:  , response: , responseOptions: [Pizza, Chocolate, Pasta, Cake]}
+// flutter: walletsdk:analytics: openVatom
+// flutter: walletsdk:analytics: closeVatom
+// flutter: walletsdk:analytics quiz: {answerOptions: [up to Zero Feel, up to Zero Leaks, up to Zero Bulk, All of the above!], clue: , lastPlayed: , question: , status: }
+// flutter: walletsdk:analytics poll: null
+
+// contestadas
+
+// flutter: walletsdk:analytics: closeVatom
+// flutter: walletsdk:analytics quiz: null
+// flutter: walletsdk:analytics poll: {lastReplied: 2024-08-07T22:26:15.637Z, question:  , response: Pizza, responseOptions: [Pizza, Chocolate, Pasta, Cake], results: {Chocolate: 2, Pizza: 2}}
+
+// flutter: walletsdk:analytics quiz: {answerOptions: [up to Zero Feel, up to Zero Leaks, up to Zero Bulk, All of the above!], clue: , lastPlayed: , question: , status: solved}
+
+// flutter: walletsdk:analytics: viewer.view.close
+// flutter: walletsdk:analytics: webBridgeEvent
+// flutter: walletsdk:analytics: closeVatom
+// flutter: walletsdk:analytics quiz: {answerOptions: [up to Zero Feel, up to Zero Leaks, up to Zero Bulk, All of the above!], clue: , lastPlayed: , question: , status: unsolved}
+// flutter: walletsdk:analytics poll: null
+
+// PERFORM ACTION
+// flutter: walletsdk:analytics: performAction
+// flutter: walletsdk:analytics:  payload[payload] {event: performAction, eventValue: 1, actionUri: varius.action:varius.io:submit-poll-v1, campaignUri: lDAKDnxh1j, businessId: jwUipscNvd, objectDefinitionUri: D4l9pLrXJr, templateVariationName: com.vatominc::d8e811f7-38a9-42e2-82ca-d535a5c86211::v1::Variation::v1, digitalObjectId: 1265a152-6783-403a-8886-4b2b6674fe02, userId: dft7pbc, provider: vatominc, networkUserId: 7d665219-2e79-4366-8265-d383a0631479, network: vatominc, viewerId: 94JHkdj8jF83jfFF2LI8Q4, viewerUri: varius.viewer:varius.io:94JHkdj8jF83jfFF2LI8Q4, vatomId: 1265a152-6783-403a-8886-4b2b6674fe02, blueprintId: FFoRFnEVnh15vrRKTxlOa, campaignId: lDAKDnxh1j, distributionId: , objectDefinitionId: D4l9pLrXJr}
+    });
   }
 
   VatomWallet initializeWallet() {
     return VatomWallet(
       accessToken:
-          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoiZXRkbDdVOERMRTZOSlFUVUtxZXpOIiwic3ViIjoiMGUzN3Y5bCIsImlhdCI6MTcyMTI1OTA0NiwiZXhwIjoxNzIxMjYyNjQ2LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiaHR0cHM6Ly9pZC52YXRvbS5jb20iLCJhdWQiOiI5NEpIa2RqOGpGODNqZkZGMkxJOFE0In0.k45kI8unleV8PAlRX4V58EMU4CLxPkmmEyiw4dSpcMSvQQLpvgXicTsxpwNrg2i10vULtBRecimWlHqtK-XtyPJZh60xprvUInkPgRG-RNNofwGQnmgfQX4AmOKvcWF3GdGY8kDarGzKSGaKzPJp0wEoewRHDrzk2rIDmwtwN_Jdo1TNA1kdJMwisbkddRtOeL9q97efwhmReFkhCBK-Kwq2l-391cKenWJQgxFs0PyYy2MGM9ujt9N0FgQNsULEH38aNhIJGr05I2LybHG2l4tMIk6lT1TklWenBDA8itwKZH4pZcZ055PfaNmGlVal7xLxewutvMiSjrBd6hRE0w",
+          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6bG9nZ2VkLWluLXZpYSI6IiIsInVybjp2YXRvbWluYzpndWVzdCI6ZmFsc2UsInVybjp2YXRvbWluYzpyZWdpb24iOiJ1cy1lYXN0NC5nY3AiLCJqdGkiOiJoRnhjRnlrWTA5cTljcGVHNW11cXIiLCJzdWIiOiJkZnQ3cGJjIiwiaWF0IjoxNzIzMDY5OTE4LCJleHAiOjE3MjMwNzM1MTgsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwgb2ZmbGluZV9hY2Nlc3MiLCJpc3MiOiJodHRwczovL2lkLnZhdG9tLmNvbSIsImF1ZCI6Ijk0SkhrZGo4akY4M2pmRkYyTEk4UTQifQ.n459D1RWZb6tMmvDoiJk_Hd1LWai2LZCg2VMCj8qB8TRG9WT1BhV8_OJJV0Pe9p3ZSp6U57y9wZ653KPjUNaF3IeB4ut0NfaaP0YYXl5rQylpE5rWq_PZhF3YtHa6WtDtcwSboKHiqvVOGZ-mr7bZL6WaZ35p4F3uc6rzIiNNpWwaoTfLHrE_p3G1-b1QvuUAVb9x1eoOALWmrta1CJSFgRarqa2xPUXNjhIqbp7WeaHS4BvGhj14DTAdcNCMCadDL7UUOo7zBZgygx60J4eLxQ8RSUXZRbosAJHSnWo7iOK8D8eafPHvt7mNexRSsLIN7hTtZsfYXcA4jMAsiwizA",
       initialRoute: "map",
       onCustomActionReceived: customActionReceived,
       onMessageReceived: onMessageReceived,
-      businessId: "nCHNthBpv7",
       config: VatomConfigFeatures(
         // path: "/token/h1cslfJGN9",
         hideTokenActions: false,
@@ -63,6 +101,7 @@ class _MyAppState extends State<MyApp> {
             ]),
           ),
         ),
+        path: "/b/jwUipscNvd",
         walletConfig: AppConfiguration(
           features: FeaturesConfig(
             filtersUserInventory: "Coupons",
@@ -164,13 +203,43 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ),
                   ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(3),
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       linkTo("/token/5050f3cd-ed2e-4412-87e3-4fa5fec2b7b5");
+                  //     },
+                  //     child: Text('token'),
+                  //     style: ElevatedButton.styleFrom(
+                  //       textStyle: const TextStyle(fontSize: 12),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(3),
+                  //   child: ElevatedButton(
+                  //     onPressed: () async {
+                  //       String points =
+                  //           await wallet.getCurrentUserPoints("QkxH4IbOIl");
+
+                  //       print("points: $points");
+                  //     },
+                  //     child: const Text('get points'),
+                  //     style: ElevatedButton.styleFrom(
+                  //       textStyle: const TextStyle(fontSize: 12),
+                  //     ),
+                  //   ),
+                  // ),
                   Padding(
                     padding: EdgeInsets.all(3),
                     child: ElevatedButton(
-                      onPressed: () {
-                        linkTo("/token/5050f3cd-ed2e-4412-87e3-4fa5fec2b7b5");
+                      onPressed: () async {
+                        String points = await wallet.linkTo(
+                            "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=D4l9pLrXJr&autoClaim=true&sync=true");
+
+                        print("points: $points");
                       },
-                      child: Text('token'),
+                      child: const Text('find poll'),
                       style: ElevatedButton.styleFrom(
                         textStyle: const TextStyle(fontSize: 12),
                       ),
@@ -180,12 +249,12 @@ class _MyAppState extends State<MyApp> {
                     padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () async {
-                        String points =
-                            await wallet.getCurrentUserPoints("QkxH4IbOIl");
+                        String points = await wallet.linkTo(
+                            "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=Bl50jKxgg0&autoClaim=true&sync=true");
 
                         print("points: $points");
                       },
-                      child: const Text('get points'),
+                      child: const Text('find quiz'),
                       style: ElevatedButton.styleFrom(
                         textStyle: const TextStyle(fontSize: 12),
                       ),
