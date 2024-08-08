@@ -77,12 +77,11 @@ class _MyAppState extends State<MyApp> {
   VatomWallet initializeWallet() {
     return VatomWallet(
       accessToken:
-          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6bG9nZ2VkLWluLXZpYSI6IiIsInVybjp2YXRvbWluYzpndWVzdCI6ZmFsc2UsInVybjp2YXRvbWluYzpyZWdpb24iOiJ1cy1lYXN0NC5nY3AiLCJqdGkiOiJoRnhjRnlrWTA5cTljcGVHNW11cXIiLCJzdWIiOiJkZnQ3cGJjIiwiaWF0IjoxNzIzMDY5OTE4LCJleHAiOjE3MjMwNzM1MTgsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwgb2ZmbGluZV9hY2Nlc3MiLCJpc3MiOiJodHRwczovL2lkLnZhdG9tLmNvbSIsImF1ZCI6Ijk0SkhrZGo4akY4M2pmRkYyTEk4UTQifQ.n459D1RWZb6tMmvDoiJk_Hd1LWai2LZCg2VMCj8qB8TRG9WT1BhV8_OJJV0Pe9p3ZSp6U57y9wZ653KPjUNaF3IeB4ut0NfaaP0YYXl5rQylpE5rWq_PZhF3YtHa6WtDtcwSboKHiqvVOGZ-mr7bZL6WaZ35p4F3uc6rzIiNNpWwaoTfLHrE_p3G1-b1QvuUAVb9x1eoOALWmrta1CJSFgRarqa2xPUXNjhIqbp7WeaHS4BvGhj14DTAdcNCMCadDL7UUOo7zBZgygx60J4eLxQ8RSUXZRbosAJHSnWo7iOK8D8eafPHvt7mNexRSsLIN7hTtZsfYXcA4jMAsiwizA",
+          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoiaFItbGNsU2pCNVRTblF2QjQ2czkzIiwic3ViIjoiMGUzN3Y5bCIsImlhdCI6MTcyMzE1MDY3MiwiZXhwIjoxNzIzMTU0MjcyLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiaHR0cHM6Ly9pZC52YXRvbS5jb20iLCJhdWQiOiI5NEpIa2RqOGpGODNqZkZGMkxJOFE0In0.IvRu4LhuTGmRxXv0kLvs2rIIG7LybU4AYuDUnLZQVh9OyGLiR9_Ou4MUJ0SrexHgKVwvOLOIBn8qaK_WrqtLgbk0AX4AXQz0-Zg9SqQQP8165XpyakFI1uyTs4SA18-KuLlhBZKHvyB-2mExoBqITGD9FLfs7suw7xgBtegRqNUDYmCUZvJFzzbH0rGbjYZn0gFnug-VmVqDmgwGv1XaZ07UnHZ8g0LGtc0vsTuaN8mLi9KE6zSSDDL6fYg1lVH051orxrR8rbgh69vFMOpK-ymG1Q7ajY00mMLrBKPDwvOzmSSpmBHPRl09lUICrhVhbEOF4EPqUGqNBXWtixc2MA",
       initialRoute: "map",
       onCustomActionReceived: customActionReceived,
       onMessageReceived: onMessageReceived,
       config: VatomConfigFeatures(
-        // path: "/token/h1cslfJGN9",
         hideTokenActions: false,
         baseUrl: "http://wallet.localhost:3000",
         // baseUrl: "https://wallet.vatom.com",
@@ -101,7 +100,8 @@ class _MyAppState extends State<MyApp> {
             ]),
           ),
         ),
-        path: "/b/jwUipscNvd",
+        path:
+            "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=D4l9pLrXJr&autoClaim=true&sync=true",
         walletConfig: AppConfiguration(
           features: FeaturesConfig(
             filtersUserInventory: "Coupons",
