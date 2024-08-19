@@ -43,48 +43,20 @@ class _MyAppState extends State<MyApp> {
       print("walletsdk:analytics quiz: $quiz");
       final poll = private["poll-v1"];
       print("walletsdk:analytics poll: $poll");
-
-//       lutter: walletsdk:analytics: openVatom
-// flutter: walletsdk:analytics: performAction
-// flutter: walletsdk:analytics: closeVatom
-// flutter: walletsdk:analytics quiz: null
-// flutter: walletsdk:analytics poll: {lastReplied: , question:  , response: , responseOptions: [Pizza, Chocolate, Pasta, Cake]}
-// flutter: walletsdk:analytics: openVatom
-// flutter: walletsdk:analytics: closeVatom
-// flutter: walletsdk:analytics quiz: {answerOptions: [up to Zero Feel, up to Zero Leaks, up to Zero Bulk, All of the above!], clue: , lastPlayed: , question: , status: }
-// flutter: walletsdk:analytics poll: null
-
-// contestadas
-
-// flutter: walletsdk:analytics: closeVatom
-// flutter: walletsdk:analytics quiz: null
-// flutter: walletsdk:analytics poll: {lastReplied: 2024-08-07T22:26:15.637Z, question:  , response: Pizza, responseOptions: [Pizza, Chocolate, Pasta, Cake], results: {Chocolate: 2, Pizza: 2}}
-
-// flutter: walletsdk:analytics quiz: {answerOptions: [up to Zero Feel, up to Zero Leaks, up to Zero Bulk, All of the above!], clue: , lastPlayed: , question: , status: solved}
-
-// flutter: walletsdk:analytics: viewer.view.close
-// flutter: walletsdk:analytics: webBridgeEvent
-// flutter: walletsdk:analytics: closeVatom
-// flutter: walletsdk:analytics quiz: {answerOptions: [up to Zero Feel, up to Zero Leaks, up to Zero Bulk, All of the above!], clue: , lastPlayed: , question: , status: unsolved}
-// flutter: walletsdk:analytics poll: null
-
-// PERFORM ACTION
-// flutter: walletsdk:analytics: performAction
-// flutter: walletsdk:analytics:  payload[payload] {event: performAction, eventValue: 1, actionUri: varius.action:varius.io:submit-poll-v1, campaignUri: lDAKDnxh1j, businessId: jwUipscNvd, objectDefinitionUri: D4l9pLrXJr, templateVariationName: com.vatominc::d8e811f7-38a9-42e2-82ca-d535a5c86211::v1::Variation::v1, digitalObjectId: 1265a152-6783-403a-8886-4b2b6674fe02, userId: dft7pbc, provider: vatominc, networkUserId: 7d665219-2e79-4366-8265-d383a0631479, network: vatominc, viewerId: 94JHkdj8jF83jfFF2LI8Q4, viewerUri: varius.viewer:varius.io:94JHkdj8jF83jfFF2LI8Q4, vatomId: 1265a152-6783-403a-8886-4b2b6674fe02, blueprintId: FFoRFnEVnh15vrRKTxlOa, campaignId: lDAKDnxh1j, distributionId: , objectDefinitionId: D4l9pLrXJr}
     });
   }
 
   VatomWallet initializeWallet() {
     return VatomWallet(
       accessToken:
-          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoiaFItbGNsU2pCNVRTblF2QjQ2czkzIiwic3ViIjoiMGUzN3Y5bCIsImlhdCI6MTcyMzE1MDY3MiwiZXhwIjoxNzIzMTU0MjcyLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiaHR0cHM6Ly9pZC52YXRvbS5jb20iLCJhdWQiOiI5NEpIa2RqOGpGODNqZkZGMkxJOFE0In0.IvRu4LhuTGmRxXv0kLvs2rIIG7LybU4AYuDUnLZQVh9OyGLiR9_Ou4MUJ0SrexHgKVwvOLOIBn8qaK_WrqtLgbk0AX4AXQz0-Zg9SqQQP8165XpyakFI1uyTs4SA18-KuLlhBZKHvyB-2mExoBqITGD9FLfs7suw7xgBtegRqNUDYmCUZvJFzzbH0rGbjYZn0gFnug-VmVqDmgwGv1XaZ07UnHZ8g0LGtc0vsTuaN8mLi9KE6zSSDDL6fYg1lVH051orxrR8rbgh69vFMOpK-ymG1Q7ajY00mMLrBKPDwvOzmSSpmBHPRl09lUICrhVhbEOF4EPqUGqNBXWtixc2MA",
+          "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Imw0Mjd4WnJxNjJlR0xhS0hhc0d0bkkyZ1JZVjF3c0VUUm0weDlDcEZiOWsifQ.eyJ1cm46dmF0b21pbmM6Z3Vlc3QiOmZhbHNlLCJ1cm46dmF0b21pbmM6cmVnaW9uIjoidXMtZWFzdDQuZ2NwIiwianRpIjoicE1sbE1xVFV0Yy1nbmtiZVdGUkN3Iiwic3ViIjoib3U2MW1sdiIsImlhdCI6MTcyMzgxOTIwMSwiZXhwIjoxNzIzODIyODAxLCJzY29wZSI6IiIsImlzcyI6Imh0dHBzOi8vaWQudmF0b20uY29tIiwiYXVkIjoiYjk4ZTQ5NTg3NTU2NGQ3ZiJ9.BAfSn0_aL3cGrD8UkEQua5oR27WxC0eCjdXcpCwLvixH6_QsVQBGnaIkm6kMNKR3DfqGxinhE9O_jviFxbIM2qRbh5cr-gFI9paCgv2cr0bKfFbm6B1PL4jrGk_3Lx1lcQUDKVDnLDcf625I_FrFY9RaS65TCee-GrusoqBWyuKE2HPQo3kL3z4SH3UtSza4_ikcqkcKDHDpz4s5U4WSOrMENdLdGRiTBgKS3XaUkYazCUPvmCtf3XHXqnGDabRQipiqeyXENgUwWHrRathbQ4NvRTv0ntu_3fN_WrFXPldufA74gRk1_i9yBRm65DqfHg9rwOP2Q3HuNzEcjM56aw",
       initialRoute: "map",
       onCustomActionReceived: customActionReceived,
       onMessageReceived: onMessageReceived,
       config: VatomConfigFeatures(
         hideTokenActions: false,
-        baseUrl: "http://wallet.localhost:3000",
-        // baseUrl: "https://wallet.vatom.com",
+        // baseUrl: "http://wallet.localhost:3000",
+        baseUrl: "https://wallet.vatom.com",
         disableArPickup: true,
         disableNewTokenToast: true,
         hideDrawer: false,
@@ -100,8 +72,8 @@ class _MyAppState extends State<MyApp> {
             ]),
           ),
         ),
-        path:
-            "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=D4l9pLrXJr&autoClaim=true&sync=true",
+        // path:
+        //     "/b/jwUipscNvd/find-token?campaignId=lDAKDnxh1j&objectDefinitionId=D4l9pLrXJr&autoClaim=true&sync=true",
         walletConfig: AppConfiguration(
           features: FeaturesConfig(
             filtersUserInventory: "Coupons",

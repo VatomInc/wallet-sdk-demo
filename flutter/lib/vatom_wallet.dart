@@ -16,8 +16,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
-String routeKey = "route";
-
 // ignore: must_be_immutable
 class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   late WebViewController _controller;
@@ -53,21 +51,6 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) async {
-  //   if (state == AppLifecycleState.paused) {
-  //     String? url = await _controller.currentUrl();
-  //     //validate that the url is not null
-  //     // ignore: unnecessary_null_comparison
-  //     if (url != null) _setCurrentUrl(url);
-
-  //     return;
-  //   }
-
-  //   print("Bahia didChangeAppLifecycleState $state  _setCurrentUrl(" ");");
-  //   _setCurrentUrl("");
-  // }
-
   void on(String msg, Function handler) {
     print("on $msg");
     _messageHandlersWebView[msg] = handler;
@@ -91,6 +74,8 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
   void initState() async {
     late final PlatformWebViewControllerCreationParams params;
 
+    // check is for camera permissions
+
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
       params = WebKitWebViewControllerCreationParams(
         allowsInlineMediaPlayback: true,
@@ -113,13 +98,11 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
           // onProgress: (int progress) {
           //   print("CONSOLE progress: $progress");
           // },
-          // onPageStarted: (String url) {
-          //   initSDK();
-          // },
+          onPageStarted: (String url) {
+            _injectJavaScript();
+          },
           // onPageFinished: (String url) {
-          //   if (!loaded) {
-          //     setLoaded(true);
-          //   }
+          //   _injectJavaScript();
           // },
           onWebResourceError: (WebResourceError error) {
             print(error.description);
@@ -150,11 +133,6 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
         if (name == "walletsdk:analytics") {
           if (payload is Map) {
             final eventName = payload["name"];
-
-            print("walletsdk:analytics: $eventName");
-            print(
-                "walletsdk:analytics:  payload[payload] ${payload["payload"]}");
-
             if (_messageHandlersWebView.containsKey(eventName)) {
               _messageHandlersWebView[eventName]!(
                 {
@@ -224,6 +202,20 @@ class VatomWallet extends StatelessWidget with WidgetsBindingObserver {
     // } else {
     //   _controller.loadRequest(Uri.parse(currentUrl));
     // }
+  }
+
+  void _injectJavaScript() async {
+    String script = '''
+  (function() {
+      window.disableHifi = true;
+      console.log('Hifi disabled',    window.disableHifi);
+
+
+  })();
+  ''';
+
+    // Inyectar el script en el WebView
+    await _controller.runJavaScript(script);
   }
 
   String createUrl() {
