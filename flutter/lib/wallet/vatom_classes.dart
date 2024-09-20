@@ -636,6 +636,203 @@ class ActionConfig {
       };
 }
 
+class WalletSchema {
+  bool scanner;
+  String? emptyStateImage;
+  String emptyStateTitle;
+  String emptyStateMessage;
+  String? inventoryFilter;
+  bool showInventory;
+
+  WalletSchema({
+    this.scanner = true,
+    this.emptyStateImage,
+    this.emptyStateTitle = 'Welcome to your Wallet!',
+    this.emptyStateMessage =
+        'Looks like your wallet is empty. Add your wallet address to show your NFTs',
+    this.inventoryFilter,
+    this.showInventory = true,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'scanner': scanner,
+      'emptyStateImage': emptyStateImage,
+      'emptyStateTitle': emptyStateTitle,
+      'emptyStateMessage': emptyStateMessage,
+      'inventoryFilter': inventoryFilter,
+      'showInventory': showInventory,
+    };
+  }
+}
+
+class RoomSchema {
+  bool? hideBackButton;
+
+  RoomSchema({this.hideBackButton = false});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'hideBackButton': hideBackButton,
+    };
+  }
+}
+
+class IconSchema {
+  String? icon;
+  String? style;
+
+  IconSchema({this.icon, this.style});
+  Map<String, dynamic> toJson() {
+    return {"icon": icon, "style": style};
+  }
+}
+
+class ActionSheetSchema {
+  final List<ActionSchema> customActions;
+  final List<String> generalInfo;
+
+  ActionSheetSchema({
+    List<ActionSchema>? customActions,
+    List<String>? generalInfo,
+  })  : customActions = customActions ?? [],
+        generalInfo = (generalInfo ?? [])
+            .map((v) => v.replaceAll(RegExp(r'\s+'), '').toLowerCase())
+            .toList();
+
+  Map<String, dynamic> toJson() {
+    return {
+      'customActions': customActions.map((action) => action.toJson()).toList(),
+      'generalInfo': generalInfo,
+    };
+  }
+}
+
+class ActionSchema {
+  String? text;
+  String? leftIcon;
+  String? action;
+
+  ActionSchema(
+    this.text,
+    this.leftIcon,
+    this.action,
+  );
+
+  Map<String, dynamic> toJson() {
+    return {"text": text, "leftIcon": leftIcon, "action": action};
+  }
+}
+
+class NftDetalSchema {
+  bool? hideCloseButton;
+  bool? hideTokenActions;
+  IconSchema? customActionBtn;
+  ActionSchema? actionsheet;
+
+  NftDetalSchema(
+      {this.hideCloseButton = false,
+      this.customActionBtn,
+      this.hideTokenActions = false,
+      this.actionsheet});
+
+  Map<String, dynamic> toJson() {
+    return {
+      "hideCloseButton": hideCloseButton,
+      "customActionBtn": customActionBtn,
+      "hideTokenActions": hideTokenActions,
+      "actionsheet": actionsheet
+    };
+  }
+}
+
+class MapSchema {
+  final dynamic mapStyle;
+  final bool disableArPickup;
+
+  MapSchema({
+    this.mapStyle,
+    this.disableArPickup = false,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'mapStyle': mapStyle,
+      'disableArPickup': disableArPickup,
+    };
+  }
+}
+
+class LoginSchema {
+  final bool showUsername;
+  final bool showUserQRCode;
+  final bool showUserRelations;
+  final bool showEditProfile;
+  final bool showManageAccountButton;
+  final bool showBusinessProfile;
+
+  LoginSchema({
+    this.showUsername = true,
+    this.showUserQRCode = true,
+    this.showUserRelations = true,
+    this.showEditProfile = true,
+    this.showManageAccountButton = true,
+    this.showBusinessProfile = true,
+  });
+
+  factory LoginSchema.fromJson(Map<String, dynamic> json) {
+    return LoginSchema(
+      showUsername: json['showUsername'] ?? true,
+      showUserQRCode: json['showUserQRCode'] ?? true,
+      showUserRelations: json['showUserRelations'] ?? true,
+      showEditProfile: json['showEditProfile'] ?? true,
+      showManageAccountButton: json['showManageAccountButton'] ?? true,
+      showBusinessProfile: json['showBusinessProfile'] ?? true,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'showUsername': showUsername,
+      'showUserQRCode': showUserQRCode,
+      'showUserRelations': showUserRelations,
+      'showEditProfile': showEditProfile,
+      'showManageAccountButton': showManageAccountButton,
+      'showBusinessProfile': showBusinessProfile,
+    };
+  }
+}
+
+class ScreensConfigSchema {
+  WalletSchema? wallet;
+  RoomSchema? roomSchema;
+  NftDetalSchema? nftDetalSchema;
+  MapSchema? mapSchema;
+  LoginSchema? profileUser;
+
+  ScreensConfigSchema(
+      {this.wallet,
+      this.roomSchema,
+      this.nftDetalSchema,
+      this.mapSchema,
+      this.profileUser});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'Wallet': wallet != null ? wallet!.toJson() : WalletSchema().toJson(),
+      'Room': roomSchema != null ? roomSchema!.toJson() : RoomSchema().toJson(),
+      'CommunitiesRoom':
+          roomSchema != null ? roomSchema!.toJson() : RoomSchema().toJson(),
+      'NFTDetail': nftDetalSchema != null
+          ? nftDetalSchema!.toJson()
+          : NftDetalSchema().toJson(),
+      "Map": mapSchema != null ? mapSchema!.toJson() : MapSchema().toJson(),
+      "profileUser":
+          profileUser != null ? profileUser!.toJson() : LoginSchema().toJson(),
+    };
+  }
+}
+
 class FeaturesConfig {
   Inventory? inventory;
   ARConfig? ar;
@@ -645,19 +842,20 @@ class FeaturesConfig {
   IconConfig? customActionBtn;
   List<ActionConfig>? customActions;
   bool hideCloseButtonOnNft = false;
-  String? filtersUserInventory;
+  String? inventoryFilter;
+  ScreensConfigSchema? screensConfig;
 
-  FeaturesConfig({
-    this.inventory,
-    this.ar,
-    this.maps,
-    this.allowedChains = const ['sol', 'eth', 'cspr'],
-    this.favicon,
-    this.customActionBtn,
-    this.customActions,
-    this.hideCloseButtonOnNft = false,
-    this.filtersUserInventory,
-  });
+  FeaturesConfig(
+      {this.inventory,
+      this.ar,
+      this.maps,
+      this.allowedChains = const ['sol', 'eth', 'cspr'],
+      this.favicon,
+      this.customActionBtn,
+      this.customActions,
+      this.hideCloseButtonOnNft = false,
+      this.inventoryFilter,
+      this.screensConfig});
 
   Map<String, dynamic> toJson() => {
         "inventory": inventory?.toJson(),
@@ -669,7 +867,8 @@ class FeaturesConfig {
         "customActions":
             customActions?.map((action) => action.toJson()).toList(),
         "hideCloseButtonOnNft": hideCloseButtonOnNft,
-        "filtersUserInventory": filtersUserInventory,
+        "inventoryFilter": inventoryFilter,
+        "screensConfig": screensConfig
       };
 }
 

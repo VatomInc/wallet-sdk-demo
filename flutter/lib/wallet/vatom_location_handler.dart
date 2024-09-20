@@ -49,7 +49,6 @@ class VatomLocationHandler {
       request) async {
     try {
       var result = await handleLocationPermission();
-      print("handleAndroidPermission: $result");
       return GeolocationPermissionsResponse(allow: result, retain: false);
     } catch (e) {
       print("handleAndroidPermission.Error: $e");
@@ -60,7 +59,6 @@ class VatomLocationHandler {
   Future<Object> responseMessage() async {
     try {
       return getCurrentPosition().then((value) {
-        print("responseMessage: $value");
         if (value != null) {
           return {
             "coords": {"latitude": value.latitude, "longitude": value.longitude}

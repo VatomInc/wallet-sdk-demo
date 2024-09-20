@@ -33,6 +33,7 @@ class VatomMessageHandler {
   Map<String, Function> handlers = {};
 
   set setController(WebViewController controller) {
+    // late String? refreshToken;
     this.controller = controller;
   }
 
@@ -51,7 +52,14 @@ class VatomMessageHandler {
     if (request != null && request) {
       Future(() {
         final handler = handlers[name];
-        if (handler == null) throw Exception('No handler registered for $name');
+
+        if (handler == null) {
+          print('VATOM.LOG: No handler registered for $name');
+          throw Exception('VATOM.LOG: No handler registered for $name');
+        }
+
+        // print('VATOM.LOG: Handler for $name found with payload $payload ${handler}');
+
         if (payload != null && payload != {}) {
           return handler(payload);
         } else {
