@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:vatom_wallet_sdk/Home.dart';
-import 'package:vatom_wallet_sdk/Wallet.dart';
+import 'package:vatom_wallet/Home.dart';
+import 'package:vatom_wallet/Wallet.dart';
 
 class TapNavigator extends StatefulWidget {
+  final String at;
+  final String? baseUrl;
+  final String? businessId;
+  final String? campaingId;
+
+  const TapNavigator(
+      {Key? key,
+      required this.at,
+      this.baseUrl,
+      this.businessId,
+      this.campaingId})
+      : super(key: key);
+
   @override
   _TapNavigatorState createState() => _TapNavigatorState();
 }
@@ -10,11 +23,25 @@ class TapNavigator extends StatefulWidget {
 class _TapNavigatorState extends State<TapNavigator> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    MyHomePage(),
-    Wallet(),
-    ThirdScreen(),
-  ];
+  late List<Widget> _widgetOptions;
+
+  @override
+  void initState() {
+    super.initState();
+    _widgetOptions = <Widget>[
+      MyHomePage(
+        at: widget.at,
+        baseUrl: widget.baseUrl,
+        businessId: widget.businessId,
+        campaingId: widget.campaingId,
+      ),
+      Wallet(
+          at: widget.at,
+          baseUrl: widget.baseUrl,
+          businessId: widget.businessId),
+      ThirdScreen(),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {

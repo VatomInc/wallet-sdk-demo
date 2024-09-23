@@ -1,12 +1,20 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:vatom_wallet_sdk/ShowNewInstance.dart';
-import 'package:vatom_wallet_sdk/Singleton.dart';
-import 'package:vatom_wallet_sdk/wallet/vatom_classes.dart';
-import 'package:vatom_wallet_sdk/wallet/vatom_wallet.dart';
+import 'package:vatom_wallet/ShowNewInstance.dart';
+import 'package:vatom_wallet/Vatom/Vatom.dart';
+import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
 
 class MyHomePage extends StatefulWidget {
+  final String? at;
+  final String? baseUrl;
+  final String? businessId;
+  final String? campaingId;
+
+  const MyHomePage(
+      {Key? key, this.at, this.baseUrl, this.businessId, this.campaingId})
+      : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -17,18 +25,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    wallet = getSingletonwalletInstance();
+    wallet = getSingletonwalletInstance(
+        at: widget.at, baseUrl: widget.baseUrl, businessId: widget.businessId);
 
     wallet.on(
       "closeVatom",
-      (data) =>
-          {print("VATOM.LOG: closeVatom data $data"), Navigator.pop(context)},
+      (data) => {print("VATOM.LOG: closeVatom"), Navigator.pop(context)},
     );
 
     wallet.on(
       "viewer.view.close",
-      (data) =>
-          {print("VATOM.LOG: viewer.view.close $data"), Navigator.pop(context)},
+      (data) => {print("VATOM.LOG: viewer.view.close"), Navigator.pop(context)},
     );
 
     wallet.on("findToken", (data) {
@@ -39,7 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _showActionSheet(BuildContext context) {
+  void _showActionSheet(BuildContext context, String businessId,
+      String campaignId, String objectDefinitionId) {
+    String url =
+        "/b/$businessId/find-token?campaignId=${widget.campaingId}&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
+
+    wallet.linkTo(url);
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -55,13 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: SafeArea(
                 child: Column(
                   children: <Widget>[
-                    // ListTile(
-                    //   leading: const Icon(Icons.cancel),
-                    //   title: const Text('Close'),
-                    //   onTap: () {
-                    //     Navigator.pop(context);
-                    //   },
-                    // ),
                     Expanded(
                       child: wallet,
                     ),
@@ -85,19 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 String businessId = "cPP75g52F3";
-
                 String campaignId = "NxY6V4ZkZH";
-                // String objectDefinitionId = "twfcPupoq1";
                 String objectDefinitionId = "euW2sZY4cz";
 
-                String url =
-                    "/b/$businessId/find-token?campaignId=$campaignId&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
-
-                wallet.linkTo(url);
-
-                _showActionSheet(context);
+                _showActionSheet(
+                    context, businessId, campaignId, objectDefinitionId);
               },
-              child: const Text('BAD'),
+              child: const Text('euW2sZY4cz'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -105,37 +105,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 String campaignId = "70nIsRCpgp";
                 String objectDefinitionId = "gwX4i4LKkr";
 
-                String url =
-                    "/b/$businessId/find-token?campaignId=$campaignId&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
-
-                wallet.linkTo(url);
-                _showActionSheet(context);
+                _showActionSheet(
+                    context, businessId, campaignId, objectDefinitionId);
               },
               child: const Text('gwX4i4LKkr'),
             ),
             ElevatedButton(
-              onPressed: () {
-                String businessId = "jwUipscNvd";
-                String campaignId = "rNFOhz1pUS";
-                String objectDefinitionId = "rNFOhz1pUS";
-
-                String url =
-                    "/b/$businessId/find-token?campaignId=$campaignId&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
-                wallet.linkTo(url);
-                _showActionSheet(context);
-              },
-              child: const Text('rNFOhz1pUS'),
-            ),
-            ElevatedButton(
               onPressed: () async {
-                dynamic user = await wallet.getCurrentUser();
-                print("VATOM.LOG USER: ${user.email}");
-              },
-              child: const Text('user'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                showActionSheetNewVatom(context);
+                showActionSheetNewVatom(context, widget.at, widget.businessId,
+                    widget.campaingId, "gwX4i4LKkr");
               },
               child: const Text('OPEN FIND NEW'),
             ),
