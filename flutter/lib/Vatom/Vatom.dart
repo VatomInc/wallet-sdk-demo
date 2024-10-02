@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:vatom_wallet/main.dart';
 import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
 
 VatomWallet? _walletInstance;
@@ -8,10 +9,10 @@ void invUpdated() {
   print("VATOM.LOG: onInventoryUpdate");
 }
 
-VatomWallet getSingletonwalletInstance(
-    {String? at, String? baseUrl, String? businessId}) {
-  final String bUrl = baseUrl ?? "https://wallet.vatom.com";
-  final String bid = businessId ?? "";
+VatomWallet getSingletonwalletInstance() {
+  final String bUrl = getBaseUrl();
+  final String _bid = getBusinessId();
+  final String at = getAt();
 
   _walletInstance ??= VatomWallet(
     accessToken: at,
@@ -24,7 +25,7 @@ VatomWallet getSingletonwalletInstance(
       hideDrawer: true,
       hideNavigation: true,
 
-      path: '/b/$bid',
+      path: '/b/$_bid',
 
       walletConfig: AppConfiguration(
         features: FeaturesConfig(

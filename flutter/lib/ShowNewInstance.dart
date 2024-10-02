@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:vatom_wallet/main.dart';
 import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
 
 void showActionSheetNewVatom(
   BuildContext context,
-  String? at,
-  String? businessId,
-  String? campaignId,
   String? objectDefinitionId,
 ) {
+  print("VATOM.LOG: init new instance");
   late VatomWallet newWallet;
+
+  String at = getAt();
+  String businessId = getBusinessId();
+  String campaignId = getcampaignId();
+
   String url =
       "/b/$businessId/find-token?campaignId=$campaignId&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
 

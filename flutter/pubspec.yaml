@@ -10,7 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  vatom_wallet_sdk: ^0.0.43
+  vatom_wallet_sdk: 
+    path: "../../wallet/apps/flutter-embed-sdk"
 
 dev_dependencies:
   lints: ^2.0.0

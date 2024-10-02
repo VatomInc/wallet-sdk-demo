@@ -3,30 +3,25 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:vatom_wallet/ShowNewInstance.dart';
 import 'package:vatom_wallet/Vatom/Vatom.dart';
+import 'package:vatom_wallet/main.dart';
 import 'package:vatom_wallet_sdk/vatom_wallet_sdk.dart';
 
-class MyHomePage extends StatefulWidget {
-  final String? at;
-  final String? baseUrl;
-  final String? businessId;
-  final String? campaingId;
-
-  const MyHomePage(
-      {Key? key, this.at, this.baseUrl, this.businessId, this.campaingId})
-      : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   late VatomWallet wallet;
+  late String? _bid;
 
   @override
   void initState() {
     super.initState();
-    wallet = getSingletonwalletInstance(
-        at: widget.at, baseUrl: widget.baseUrl, businessId: widget.businessId);
+    wallet = getSingletonwalletInstance();
+    _bid = getBusinessId();
 
     wallet.on(
       "closeVatom",
@@ -46,10 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _showActionSheet(BuildContext context, String businessId,
-      String campaignId, String objectDefinitionId) {
+  void _showActionSheet(BuildContext context, String objectDefinitionId) {
+    String campaignId = getcampaignId();
     String url =
-        "/b/$businessId/find-token?campaignId=${widget.campaingId}&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
+        "/b/$_bid/find-token?campaignId=${campaignId}&objectDefinitionId=$objectDefinitionId&autoClaim=true&sync=true&forceAcquire=false&login=1";
 
     wallet.linkTo(url);
 
@@ -90,32 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
-                String businessId = "cPP75g52F3";
-                String campaignId = "NxY6V4ZkZH";
-                String objectDefinitionId = "euW2sZY4cz";
-
-                _showActionSheet(
-                    context, businessId, campaignId, objectDefinitionId);
-              },
-              child: const Text('euW2sZY4cz'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                String businessId = "dALCDZAzCA";
-                String campaignId = "70nIsRCpgp";
                 String objectDefinitionId = "gwX4i4LKkr";
 
-                _showActionSheet(
-                    context, businessId, campaignId, objectDefinitionId);
+                _showActionSheet(context, objectDefinitionId);
               },
-              child: const Text('gwX4i4LKkr'),
+              child: const Text('3vJzWykfXB'),
             ),
             ElevatedButton(
-              onPressed: () async {
-                showActionSheetNewVatom(context, widget.at, widget.businessId,
-                    widget.campaingId, "gwX4i4LKkr");
-              },
-              child: const Text('OPEN FIND NEW'),
+              onPressed: () => {showActionSheetNewVatom(context, "gwX4i4LKkr")},
+              child: const Text('OPEN NEW INSTANCE'),
             ),
           ],
         ),

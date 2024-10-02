@@ -763,11 +763,10 @@ packages:
   vatom_wallet_sdk:
     dependency: "direct main"
     description:
-      name: vatom_wallet_sdk
-      sha256: "3e295c2bcffe69f1afc89f920e0b6356d7e1db963b24f0edfe76be75fbc8c28d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.43"
+      path: "../../wallet/apps/flutter-embed-sdk"
+      relative: true
+    source: path
+    version: "0.0.44"
   vector_math:
     dependency: transitive
     description:

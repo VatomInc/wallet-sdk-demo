@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:vatom_wallet/Home.dart';
-import 'package:vatom_wallet/Wallet.dart';
+import 'package:vatom_wallet/Vatom/Vatom.dart';
+import 'package:vatom_wallet/screens/Coupons.dart';
+import 'package:vatom_wallet/screens/Home.dart';
+import 'package:vatom_wallet/screens/Wallet.dart';
 
 class TapNavigator extends StatefulWidget {
-  final String at;
-  final String? baseUrl;
-  final String? businessId;
-  final String? campaingId;
-
-  const TapNavigator(
-      {Key? key,
-      required this.at,
-      this.baseUrl,
-      this.businessId,
-      this.campaingId})
-      : super(key: key);
+  const TapNavigator({Key? key}) : super(key: key);
 
   @override
   _TapNavigatorState createState() => _TapNavigatorState();
@@ -28,18 +19,13 @@ class _TapNavigatorState extends State<TapNavigator> {
   @override
   void initState() {
     super.initState();
+
+    getSingletonwalletInstance();
+
     _widgetOptions = <Widget>[
-      MyHomePage(
-        at: widget.at,
-        baseUrl: widget.baseUrl,
-        businessId: widget.businessId,
-        campaingId: widget.campaingId,
-      ),
-      Wallet(
-          at: widget.at,
-          baseUrl: widget.baseUrl,
-          businessId: widget.businessId),
       ThirdScreen(),
+      HomePage(),
+      Wallet(),
     ];
   }
 
@@ -61,35 +47,21 @@ class _TapNavigatorState extends State<TapNavigator> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Tickets',
+            label: 'Coupons',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.wallet),
             label: 'Wallet',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blueAccent,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class ThirdScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          'School Screen',
-          style: TextStyle(fontSize: 24),
-        ),
       ),
     );
   }
